@@ -208,7 +208,7 @@ export default function SetProfile({ onClick, onSuccess }) {
 
     return (
         <>
-            {isLoading && <Loading />}
+            {!isLoading && <Loading />}
             <Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
                 <form style={styleSetProfile} onSubmit={handleSubmitForm}>
                     <div style={styleRow}>
