@@ -6,7 +6,7 @@ import themeColor from "../../variables/color";
 import axios from "../../configs/axios";
 import Loading from "../../components/Loading";
 
-export default function SetProfile({ onClick, onSuccess }) {
+export default function SetProfile({ onClick }) {
     const color = themeColor()
 
     const styleSetProfile = {
@@ -175,6 +175,7 @@ export default function SetProfile({ onClick, onSuccess }) {
         try {
             e.preventDefault()
 
+            // console.log("🚀 ~ file: SetProfile.jsx:181 ~ handleSubmitForm ~ file:", file)
             const formData = new FormData()
             if (file) {
                 formData.append('image', file)
@@ -183,16 +184,18 @@ export default function SetProfile({ onClick, onSuccess }) {
                 formData.append('description', description)
             }
             if (category) {
-                formData.append('category', Object.values(category).filter(el => el !== null))
+                const categoryArray = Object.values(category).filter(el => el !== null)
+                categoryArray.map(el => formData.append('category', el))
             }
             if (interest) {
-                formData.append('interest', Object.values(interest).filter(el => el !== null))
+                const interestArray = Object.values(interest).filter(el => el !== null)
+                interestArray.map(el => formData.append('interest', el))
             }
-            console.log("🚀 ~ file: SetProfile.jsx:97 ~ handleSubmitForm ~ formData:", formData)
+            console.log("🚀 ~ file: SetProfile.jsx:97 ~ handleSubmitForm ~ formData:", formData.get("category"))
             setLoading(true)
-            const newProfile = await axios.patch('/user', formData)
+            const res = await axios.patch('/user', formData)
+            const newProfile = res.data
             console.log(newProfile)
-            onSuccess()
         } catch (err) {
             console.log(err)
         } finally {
