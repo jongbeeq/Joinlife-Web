@@ -30,16 +30,20 @@ export function BoxButton({ children, fontSize, height, backgroundColor, color, 
     )
 }
 
-export function TextButton({ children, fontSize, color, onClick }) {
-    const Button = styled.p`
+export function TextButton({ children, fontSize = "16", color, onClick, hoverColor }) {
+    const Button = styled.button`
         color: ${color};
         font-size: ${fontSize}px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        display: flex;
+        align-items: center;
+        gap: ${fontSize * 0.5}px;
     
     &:hover {
-        text-decoration-line: underline;
+        color: ${hoverColor};
+        text-decoration-line: ${!hoverColor && "underline"};
         cursor: pointer;
     }
     `

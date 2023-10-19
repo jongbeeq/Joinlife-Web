@@ -1,6 +1,9 @@
 import Joi from 'joi'
+import message from '../../variables/message'
 
 // .email({ tlds: false }) จะทำให้ไม่ error
+
+const variables = message()
 
 const registerSchema = Joi.object({
     firstName: Joi.string().trim().required(),
@@ -22,19 +25,22 @@ const registerSchema = Joi.object({
         is: Joi.string().email({ tlds: false }),
         then: Joi.string().default(Joi.ref('emailOrMobile'))
     }),
-    birthDate: Joi.string().trim(),
-    gender: Joi.string().trim(),
+    birthDate: Joi.string().trim().allow(null, ''),
+    gender: Joi.string().trim().allow(null, ''),
 })
 
 const validateRegister = input => {
     const { error } = registerSchema.validate(input, { abortEarly: false })
-    console.dir(error)
     if (error) {
         const result = error.details.reduce((acc, el) => {
             const { message, path } = el
             acc[path[0]] = message
             return acc
         }, {})
+        console.log(result)
+        if (result.password === variables.passwordPattenCondition(input.password)) {
+            result.password = variables.passwordPattenMessage
+        }
         return result
     }
 }

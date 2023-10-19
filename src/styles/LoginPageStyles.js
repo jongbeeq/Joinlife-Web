@@ -13,7 +13,7 @@ export default function LoginPageStyles() {
         display: "flex",
         justifyContent: "center",
         gap: "20px",
-        paddingTop: "80px",
+        paddingTop: "100px",
         flex: "1 0 0",
         alignSelf: "stretch",
     }

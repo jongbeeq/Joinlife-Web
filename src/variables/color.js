@@ -4,6 +4,7 @@ export default function themeColor() {
         Black: "black",
         Gray: "#949494",
         SubGray: "#BFBFBF",
+        OpacityGray: "#E8E8E8",
         White: "white",
         Background: "#FFFAF3",
         Yellow: "#FFA800",

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { addAccessToken, getAccessToken } from "../utils/local-storage";
+import { addAccessToken, getAccessToken, removeAccessToken } from "../utils/local-storage";
 import axios from "../configs/axios";
 
 export const AuthContext = createContext()
@@ -7,6 +7,7 @@ export const AuthContext = createContext()
 export default function AuthContextProvider({ children }) {
     const [authUser, setAuthUser] = useState()
     const [initialLoading, setInitialLoading] = useState(true);
+    const [confirmLogin, setConfirmLogin] = useState(null)
 
     useEffect(() => {
         if (getAccessToken()) {
@@ -32,10 +33,20 @@ export default function AuthContextProvider({ children }) {
     const register = async registerInputObject => {
         const res = await axios.post('/auth/register', registerInputObject)
         addAccessToken(res.data.accessToken);
-        setAuthUser(res.data.user)
+        setConfirmLogin(res.data.user)
+        return res
     }
 
-    return (<AuthContext.Provider value={{ login, register, authUser, initialLoading }}>
+    const toHomePage = async (confirmLogin) => {
+        setAuthUser(confirmLogin)
+    }
+
+    const logout = () => {
+        removeAccessToken()
+        setAuthUser(null)
+    }
+
+    return (<AuthContext.Provider value={{ login, logout, register, toHomePage, confirmLogin, authUser, initialLoading }}>
         {children}
     </AuthContext.Provider>)
 }

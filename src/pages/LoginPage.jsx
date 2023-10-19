@@ -1,4 +1,4 @@
-import themeColor from "../colors/color"
+import themeColor from "../variables/color"
 import { TextButton } from "../components/Button"
 import LoginForm from "../features/auth/LoginForm"
 import { JoinlifeLogo } from "../icon/icon"
@@ -13,7 +13,9 @@ export default function LoginPage() {
 
     return (
         <div style={style.LoginPage}>
-            <JoinlifeLogo />
+            <div className="w-full pl-14">
+                <JoinlifeLogo />
+            </div>
             <div style={style.LoginContent}>
                 <Container width="395" height="395" hasBorder={true} hasShadow={false} >Content</Container>
                 <Container width="395" height="395" backgroundColor={color.White}>

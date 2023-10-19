@@ -1,4 +1,4 @@
-import themeColor from "../colors/color"
+import themeColor from "../variables/color"
 import { TextButton } from "./Button"
 
 export default function Container({ children, width, height, backgroundColor, hasShadow = true, hasBorder, popUp = false, isWrap = false, clickClose }) {
@@ -19,18 +19,22 @@ export default function Container({ children, width, height, backgroundColor, ha
         // PopUp setup
         border: hasBorder && `1px solid ${color.Black}`,
         position: popUp && "absolute",
-        transform: popUp && "translate(-62%, -68%)",
+        top: "50%",
+        left: "40%",
+        transform: popUp && "translate(-50%, -50%)",
         zIndex: popUp && "100"
     }
 
     const styleIndexBackground = {
         position: "absolute",
-        transform: "translate(-59%, -65%)",
+        transform: "translate(-50%, -50%)",
+        top: "50%",
+        left: "40%",
         zIndex: "100",
         background: color.Background,
         opacity: 0.7,
-        width: "1200px",
-        height: "800px"
+        width: "100vw",
+        height: "100vh"
     }
 
     const styleCloseButton = {
@@ -41,7 +45,7 @@ export default function Container({ children, width, height, backgroundColor, ha
 
     return (
         <>
-            {popUp && <div style={styleIndexBackground}></div>}
+            {popUp && <div style={styleIndexBackground} onClick={clickClose}></div>}
             <div style={style}>
                 {popUp && <div style={styleCloseButton}>
                     <TextButton onClick={clickClose} fontSize={height * 0.025} color={color.Gray}>X</TextButton>

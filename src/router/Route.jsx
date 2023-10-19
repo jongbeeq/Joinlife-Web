@@ -7,6 +7,7 @@ import EventPage from '../pages/EventPage';
 import ProfilePage from '../pages/ProfilePage';
 import LoginPage from '../pages/LoginPage';
 import Authenticated from '../features/auth/Authentication';
+import RedirectIfAuthenticated from '../features/auth/RedirectIfAuthenticated';
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: (
-            <LoginPage />
+            <RedirectIfAuthenticated>
+                <LoginPage />
+            </RedirectIfAuthenticated>
+
         )
     }
 ])
