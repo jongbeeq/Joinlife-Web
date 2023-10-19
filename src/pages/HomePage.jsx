@@ -97,7 +97,7 @@ export default function HomePage() {
                     <LogoutIcon />
                 </TextButton>
                 <TextButton onClick={() => setIsEditProfile(true)}>Edit Profile</TextButton>
-                {isEditProflie && <SetProfile onClick={() => setIsEditProfile(false)} onSuccess={() => setIsEditProfile(false)} />}
+                {isEditProflie && <SetProfile onClick={() => setIsEditProfile(false)} onSuccess={setIsEditProfile} setAuthUser={setAuthUser} />}
             </div>
         </div>
     )

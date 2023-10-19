@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { TextButton } from "../components/Button"
 import { HomeIcon, JoinlifeLogo, SearchIcon, TrendIcon } from "../icon/icon"
 import themeColor from "../variables/color"
@@ -22,7 +23,9 @@ export default function Navbar() {
 
     return (
         <div style={navBar}>
-            <JoinlifeLogo fontSize="35px" />
+            <Link to='/'>
+                <JoinlifeLogo fontSize="35px" />
+            </Link>
             <div className="flex flex-col gap-5">
                 <TextButton hoverColor={color.Gray}>
                     <HomeIcon />

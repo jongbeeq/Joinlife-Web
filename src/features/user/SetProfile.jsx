@@ -5,6 +5,7 @@ import { InputBox, InputFile } from "../../components/InputBox";
 import themeColor from "../../variables/color";
 import axios from "../../configs/axios";
 import Loading from "../../components/Loading";
+import { useAuth } from "../../hooks/use-auth";
 
 export default function SetProfile({ onClick, onSuccess }) {
     const color = themeColor()
@@ -50,6 +51,8 @@ export default function SetProfile({ onClick, onSuccess }) {
         border: `1px solid ${color.Gray}`,
         overflow: "auto"
     }
+
+    const { setAuthUser } = useAuth()
 
     const [allCategory, setAllCategory] = useState([])
     const [description, setDescription] = useState(null)
@@ -194,21 +197,29 @@ export default function SetProfile({ onClick, onSuccess }) {
             setLoading(true)
             const res = await axios.patch('/user', formData)
             const newProfile = res.data
+            setAuthUser(res.data)
             console.log(newProfile)
-            alert("finish")
             onSuccess(false)
-            // setIsSubmit(true)
         } catch (err) {
+            alert(err)
             console.log(err)
         } finally {
             setLoading(false)
         }
     }
 
+    const styleButtonZone = {
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        gap: "5%"
+    }
+
 
     return (
         <>
-            {!isLoading && <Loading />}
+            {isLoading && <Loading />}
             <Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
                 <form style={styleSetProfile} onSubmit={handleSubmitForm}>
                     <div style={styleRow}>
@@ -235,8 +246,10 @@ export default function SetProfile({ onClick, onSuccess }) {
                             </div>
                         </div>
                     </div>
-                    <TextButton color={color.Orange}>Set Profile</TextButton>
-                    {/* <input type="submit" /> */}
+                    <div id="buttonZone" style={styleButtonZone}>
+                        <TextButton color={color.Orange}>Set Profile</TextButton>
+                        <TextButton color={color.Gray} onClick={(e) => { e.preventDefault; onSuccess() }}>Skip and Login</TextButton>
+                    </div>
                 </form>
             </Container >
         </>
