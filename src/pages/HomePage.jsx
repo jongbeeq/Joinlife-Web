@@ -11,19 +11,11 @@ export default function HomePage() {
 
     const color = themeColor()
 
-    const { authUser } = useAuth()
+    const { authUser, setAuthUser } = useAuth()
 
-    // const setProfile = async (data) => {
-    //     try {
-    //         console.log("Run")
-    //         const res = await axios.patch('/user', data)
-    //         console.log(res.data)
-    //         // setAuthUser(res.data)
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-    const { username, profileImage, firstName, lastName } = authUser
+    // const { username, profileImage, firstName, lastName } = authUser
+
+    const [userProfile, setUserProfile] = useState(authUser)
 
     const homePage = {
         width: "85%",
@@ -94,11 +86,11 @@ export default function HomePage() {
             <div style={leftHomePage}>
                 <div id="AvatarBox" style={styleAvatarBox}>
                     <div id="AvatarImageBox" style={styleAvatarImageBox}>
-                        <img id="AvatarImage" style={styleAvatarImage} src={profileImage} />
+                        <img id="AvatarImage" style={styleAvatarImage} src={authUser.profileImage} />
                     </div>
                     <div id="AvatarText" style={styleAvatarText}>
-                        <TextButton >{username}</TextButton>
-                        <TextButton color={color.Gray} fontSize="12">{firstName} {lastName}</TextButton>
+                        <TextButton >{authUser.username}</TextButton>
+                        <TextButton color={color.Gray} fontSize="12">{authUser.firstName} {authUser.lastName}</TextButton>
                     </div>
                 </div>
                 <TextButton onClick={logout} hoverColor={color.Gray}>

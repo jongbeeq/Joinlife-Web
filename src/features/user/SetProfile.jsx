@@ -6,7 +6,7 @@ import themeColor from "../../variables/color";
 import axios from "../../configs/axios";
 import Loading from "../../components/Loading";
 
-export default function SetProfile({ onClick }) {
+export default function SetProfile({ onClick, onSuccess }) {
     const color = themeColor()
 
     const styleSetProfile = {
@@ -175,7 +175,6 @@ export default function SetProfile({ onClick }) {
         try {
             e.preventDefault()
 
-            // console.log("🚀 ~ file: SetProfile.jsx:181 ~ handleSubmitForm ~ file:", file)
             const formData = new FormData()
             if (file) {
                 formData.append('image', file)
@@ -196,6 +195,9 @@ export default function SetProfile({ onClick }) {
             const res = await axios.patch('/user', formData)
             const newProfile = res.data
             console.log(newProfile)
+            alert("finish")
+            onSuccess(false)
+            // setIsSubmit(true)
         } catch (err) {
             console.log(err)
         } finally {
@@ -222,7 +224,6 @@ export default function SetProfile({ onClick }) {
                     <div style={styleRow}>
                         <div style={styleInput}>
                             <p>Category Profile</p>
-                            {/* <CategoryButton categoryName={"Music"} /> */}
                             <div style={styleCategoryBox}>
                                 {allCategory.map(category => <CategoryButton key={category} categoryName={category} />)}
                             </div>
@@ -235,6 +236,7 @@ export default function SetProfile({ onClick }) {
                         </div>
                     </div>
                     <TextButton color={color.Orange}>Set Profile</TextButton>
+                    {/* <input type="submit" /> */}
                 </form>
             </Container >
         </>

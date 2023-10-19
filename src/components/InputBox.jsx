@@ -123,7 +123,6 @@ export function InputFile({ width, height, circle, fontSize, multiFile, file, se
     const styleShowImage = {
         width: "100%",
         height: "100%",
-        // display: "flex",
         justifyContent: "center"
     }
 
@@ -147,7 +146,7 @@ export function InputFile({ width, height, circle, fontSize, multiFile, file, se
                 </div>
             ) : (
                 <div style={styleImageButton} onClick={() => fileEl.current.click()}>
-                    <TextButton color={color.Gray}>
+                    <TextButton color={color.Gray} onClick={e => e.preventDefault()}>
                         <ImageIcon />
                         Upload Image
                     </TextButton>
