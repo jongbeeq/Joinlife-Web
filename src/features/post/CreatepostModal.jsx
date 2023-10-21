@@ -99,7 +99,7 @@ export default function CreatepostModal({ clickClose }) {
     }
 
     function FileBox({ elFile, index }) {
-        // let fileBox
+        let fileContent
 
         const urlFile = URL.createObjectURL(elFile)
         // alert(urlFile)
@@ -107,36 +107,56 @@ export default function CreatepostModal({ clickClose }) {
         // alert(typeFile)
         const [removeFile, setRemoveFile] = useState(false)
         if (typeFile === "image") {
-            return (
-                !removeFile &&
-                (
-                    <div key={elFile.name} id="fileBox" style={styleFileBox}>
-                        <p
-                            onClick={
-                                () => {
-                                    files.splice(index, 1)
-                                    // alert(files.length)
-                                    console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
-                                    setFiles(files)
-                                    setRemoveFile(true)
-                                    // alert(`in OnClick X files:     ${files}`)
-                                    // console.log(files)
-                                }
-                            }
-                            id="removeFileButton" style={styleRemoveFileButton}>X</p>
-                        <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
-                    </div>
-                )
+            // return (
+            //     !removeFile &&
+            //     (
+            //         <div key={elFile.name} id="fileBox" style={styleFileBox}>
+            //             <p
+            //                 onClick={
+            //                     () => {
+            //                         files.splice(index, 1)
+            //                         // alert(files.length)
+            //                         console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
+            //                         setFiles(files)
+            //                         setRemoveFile(true)
+            //                         // alert(`in OnClick X files:     ${files}`)
+            //                         // console.log(files)
+            //                     }
+            //                 }
+            //                 id="removeFileButton" style={styleRemoveFileButton}>X</p>
+            //             <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
+            //         </div>
+            //     )
 
-            )
+            // )
+            fileContent = <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
         }
 
         if (typeFile === "video") {
-            return (
-                <video key={elFile.name} src={urlFile} controls autoPlay muted></video>
-            )
+            fileContent = <video key={elFile.name} src={urlFile} controls autoPlay muted></video>
         }
 
+        return (
+            !removeFile &&
+            (
+                <div key={elFile.name} id="fileBox" style={styleFileBox}>
+                    <p
+                        onClick={
+                            () => {
+                                files.splice(index, 1)
+                                // alert(files.length)
+                                console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
+                                setFiles(files)
+                                setRemoveFile(true)
+                                // alert(`in OnClick X files:     ${files}`)
+                                // console.log(files)
+                            }
+                        }
+                        id="removeFileButton" style={styleRemoveFileButton}>X</p>
+                    {fileContent}
+                </div>
+            )
+        )
     }
 
 
