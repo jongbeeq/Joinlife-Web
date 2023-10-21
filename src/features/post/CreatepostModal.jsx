@@ -102,33 +102,9 @@ export default function CreatepostModal({ clickClose }) {
         let fileContent
 
         const urlFile = URL.createObjectURL(elFile)
-        // alert(urlFile)
         const typeFile = elFile.type.split("/")[0]
-        // alert(typeFile)
         const [removeFile, setRemoveFile] = useState(false)
         if (typeFile === "image") {
-            // return (
-            //     !removeFile &&
-            //     (
-            //         <div key={elFile.name} id="fileBox" style={styleFileBox}>
-            //             <p
-            //                 onClick={
-            //                     () => {
-            //                         files.splice(index, 1)
-            //                         // alert(files.length)
-            //                         console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
-            //                         setFiles(files)
-            //                         setRemoveFile(true)
-            //                         // alert(`in OnClick X files:     ${files}`)
-            //                         // console.log(files)
-            //                     }
-            //                 }
-            //                 id="removeFileButton" style={styleRemoveFileButton}>X</p>
-            //             <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
-            //         </div>
-            //     )
-
-            // )
             fileContent = <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
         }
 
@@ -147,6 +123,10 @@ export default function CreatepostModal({ clickClose }) {
                                 // alert(files.length)
                                 console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
                                 setFiles(files)
+                                alert(typeof (files))
+                                alert(files.length)
+                                alert(files?.length !== 0 && files !== null)
+                                alert(files?.length === 0 || files === null)
                                 setRemoveFile(true)
                                 // alert(`in OnClick X files:     ${files}`)
                                 // console.log(files)
@@ -159,15 +139,11 @@ export default function CreatepostModal({ clickClose }) {
         )
     }
 
-
-
-
-
     return (
         <>
             <div onClick={() => setIsOpen(true)} id="createpostButton" style={styleCreatepostButton}>+ Create Post</div>
             {isOpen &&
-                <Container Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={() => setIsOpen(true)}>
+                <Container Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={() => setIsOpen(false)}>
                     <form id="postForm" style={stylePostForm} onSubmit={handleSubmitPost}>
 
                         <div id="inputFilePost" style={styleInputFilePost}>
@@ -215,6 +191,7 @@ export default function CreatepostModal({ clickClose }) {
                                     }
                                 )} */}
                                 </div>)
+
                             }
                             {(files?.length === 0 || files === null) && <div onClick={() => fileEl.current.click()}>Upload Image or Video</div>}
                             <input
