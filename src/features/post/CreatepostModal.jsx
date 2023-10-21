@@ -10,7 +10,6 @@ export default function CreatepostModal({ clickClose }) {
     }
     const [isOpen, setIsOpen] = useState(false)
     const [files, setFiles] = useState(null)
-    const [removeFile, setRemoveFile] = useState(false)
 
     const fileEl = useRef(null)
 
@@ -99,71 +98,66 @@ export default function CreatepostModal({ clickClose }) {
         objectFit: "cover"
     }
 
-    // useEffect(
-    //     () => {
-    //         setFiles(files)
-    //         console.log(files)
-    //         alert("useEffect active")
-    //         alert(`files?.length:     ${files?.length}`)
-    //         alert(`files:     ${files}`)
-    //         alert(`files?.length !== 0 :    ", ${files?.length !== 0}`)
-    //     },
-    //     [files]
-    // )
+    function FileBox({ elFile, index }) {
+        // let fileBox
 
-    // function ImageBox(elFile, index) {
-    //     const urlFile = URL.createObjectURL(elFile)
-    //     const typeFile = elFile.type.split("/")[0]
+        const urlFile = URL.createObjectURL(elFile)
+        // alert(urlFile)
+        const typeFile = elFile.type.split("/")[0]
+        // alert(typeFile)
+        const [removeFile, setRemoveFile] = useState(false)
+        if (typeFile === "image") {
+            return (
+                !removeFile &&
+                (
+                    <div key={elFile.name} id="fileBox" style={styleFileBox}>
+                        <p
+                            onClick={
+                                () => {
+                                    files.splice(index, 1)
+                                    // alert(files.length)
+                                    console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
+                                    setFiles(files)
+                                    setRemoveFile(true)
+                                    // alert(`in OnClick X files:     ${files}`)
+                                    // console.log(files)
+                                }
+                            }
+                            id="removeFileButton" style={styleRemoveFileButton}>X</p>
+                        <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
+                    </div>
+                )
 
-    //     if (typeFile === "image") {
-    //         return (
-    //             <div key={elFile.name} id="fileBox" style={styleFileBox}>
-    //                 <p
-    //                     onClick={
-    //                         () => {
-    //                             // useEffect(
+            )
+        }
 
-    //                             // )
-    //                             files.splice(index, 1)
-    //                             alert(files.length)
-    //                             console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
-    //                             setFiles(files)
-    //                             alert(`in OnClick X files:     ${files}`)
-    //                             // console.log(files)
-    //                         }
-    //                     }
-    //                     id="removeFileButton" style={styleRemoveFileButton}>X</p>
-    //                 <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
-    //             </div>
-    //         )
-    //     }
-    //     if (typeFile === "video") {
-    //         return (
-    //             <video key={elFile.name} src={urlFile} controls autoPlay muted></video>
-    //         )
-    //     }
-    // }
+        if (typeFile === "video") {
+            return (
+                <video key={elFile.name} src={urlFile} controls autoPlay muted></video>
+            )
+        }
+
+    }
+
+
+
 
 
     return (
         <>
-            {/* <div onClick={() => setIsOpen(true)} id="createpostButton" style={styleCreatepostButton}>+ Create Post</div> */}
-            {/* {isOpen && */}
-            <Container Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={clickClose}>
-                <form id="postForm" style={stylePostForm} onSubmit={handleSubmitPost}>
+            <div onClick={() => setIsOpen(true)} id="createpostButton" style={styleCreatepostButton}>+ Create Post</div>
+            {isOpen &&
+                <Container Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={() => setIsOpen(true)}>
+                    <form id="postForm" style={stylePostForm} onSubmit={handleSubmitPost}>
 
-                    <div id="inputFilePost" style={styleInputFilePost}>
-                        {
-                            (files?.length !== 0 && files !== null) &&
-                            (<div id="fileContainer" style={styleShowFileContainer}>
-                                {/* {files?.map((elFile, index) => {
-                                        alert(`files?.map((elFile):     ${elFile}`)
-                                        return (< ImageBox key={index} elFile={elFile} index={index} />)
-                                    }
-                                    )} */}
+                        <div id="inputFilePost" style={styleInputFilePost}>
+                            {
+                                (files?.length !== 0 && files !== null) &&
+                                (<div id="fileContainer" style={styleShowFileContainer}>
 
+                                    {files?.map(el => <FileBox key={el} elFile={el}></FileBox>)}
 
-                                {files?.map(
+                                    {/* {files?.map(
                                     (elFile, index) => {
                                         const urlFile = URL.createObjectURL(elFile)
                                         const typeFile = elFile.type.split("/")[0]
@@ -199,26 +193,26 @@ export default function CreatepostModal({ clickClose }) {
                                             )
                                         }
                                     }
-                                )}
-                            </div>)
-                        }
-                        {(files?.length === 0 || files === null) && <div onClick={() => fileEl.current.click()}>Upload Image or Video</div>}
-                        <input
-                            type="file"
-                            className="hidden"
-                            multiple
-                            onChange={
-                                e => {
-                                    console.log(Object.values(e.target.files))
-                                    setFiles(Object.values(e.target.files))
-                                }
+                                )} */}
+                                </div>)
                             }
-                            ref={fileEl}
-                        />
-                    </div>
-                    <button> create post</button>
-                </form>
-            </Container >
+                            {(files?.length === 0 || files === null) && <div onClick={() => fileEl.current.click()}>Upload Image or Video</div>}
+                            <input
+                                type="file"
+                                className="hidden"
+                                multiple
+                                onChange={
+                                    e => {
+                                        console.log(Object.values(e.target.files))
+                                        setFiles(Object.values(e.target.files))
+                                    }
+                                }
+                                ref={fileEl}
+                            />
+                        </div>
+                        <button> create post</button>
+                    </form>
+                </Container >}
             {/* } */}
         </>
     )
