@@ -43,8 +43,8 @@ export default function SetProfile({ onClick, onSuccess }) {
         width: "95%",
         height: "50%",
         padding: "10px",
-        alignItems: "center",
-        alignContent: "center",
+        alignItems: "flex-start",
+        alignContent: "flex-start",
         gap: "39px 8px",
         flexWrap: "wrap",
         borderRadius: "20px",
@@ -193,7 +193,6 @@ export default function SetProfile({ onClick, onSuccess }) {
                 const interestArray = Object.values(interest).filter(el => el !== null)
                 interestArray.map(el => formData.append('interest', el))
             }
-            console.log("🚀 ~ file: SetProfile.jsx:97 ~ handleSubmitForm ~ formData:", formData.get("category"))
             setLoading(true)
             const res = await axios.patch('/user', formData)
             const newProfile = res.data

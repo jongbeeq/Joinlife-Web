@@ -12,7 +12,7 @@ export default function Navbar() {
         right: "0",
         display: "flex",
         height: "100vh",
-        width: "15%",
+        width: "20%",
         padding: "2% 0% 0% 2%",
         flexDirection: "column",
         gap: "5%",
@@ -27,10 +27,12 @@ export default function Navbar() {
                 <JoinlifeLogo fontSize="35px" />
             </Link>
             <div className="flex flex-col gap-5">
-                <TextButton hoverColor={color.Gray}>
-                    <HomeIcon />
-                    Home
-                </TextButton>
+                <Link to='/'>
+                    <TextButton hoverColor={color.Gray}>
+                        <HomeIcon />
+                        Home
+                    </TextButton>
+                </Link>
                 <TextButton hoverColor={color.Gray}>
                     <SearchIcon />
                     Search

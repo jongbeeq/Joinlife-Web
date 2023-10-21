@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { TextButton } from "../components/Button"
 import { useAuth } from "../hooks/use-auth"
-import { LogoutIcon } from "../icon/icon"
+import { LogoutIcon, SettingIcon } from "../icon/icon"
 import themeColor from "../variables/color"
 import SetProfile from "../features/user/SetProfile"
+import Avatar from "../components/HeaderUser"
+import HeaderUser from "../components/HeaderUser"
+import CreatepostModal from "../features/post/CreatepostModal"
 // import axios from "../configs/axios"
 
 export default function HomePage() {
@@ -13,91 +16,161 @@ export default function HomePage() {
 
     const { authUser, setAuthUser } = useAuth()
 
-    // const { username, profileImage, firstName, lastName } = authUser
-
-    const [userProfile, setUserProfile] = useState(authUser)
+    const [isEditProflie, setIsEditProfile] = useState(false)
+    const [openSetting, setOpenSetting] = useState(false)
 
     const homePage = {
         width: "85%",
+        height: "100vh",
         display: "flex",
         alignItems: "flex-start",
         gap: "1px",
-        position: "relative"
+        position: "relative",
+        // overflow: "auto",
     }
 
+    // Middle Home page
     const middleHomePage = {
         display: "flex",
         width: "82%",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "33px",
-    }
-
-    const leftHomePage = {
-        display: "flex",
-        width: "18%",
         height: "100vh",
         flexDirection: "column",
         alignItems: "center",
-        borderLeft: `1px solid ${color.OpacityGray}`,
-        padding: "2% 0% 0% 2%"
+        gap: "33px",
+        overflow: "auto"
     }
 
-    const [isEditProflie, setIsEditProfile] = useState(false)
-
-    const styleAvatarBox = {
-        display: "flex",
-        alignItems: "space-between",
-        width: "200px",
-        height: "50px",
-        gap: "5%"
-    }
-
-    const styleAvatarImageBox = {
-        objectFit: "cover",
-        width: "25%",
-        height: "100%",
-        borderRadius: "100%",
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: color.Orange,
-        border: `1px solid ${color.Gray}`,
-        overflow: "hidden"
-    }
-
-    const styleAvatarImage = {
-        width: "100%",
-        height: "100%"
-    }
-
-    const styleAvatarText = {
+    const styleContentMiddleHomePage = {
+        width: "60%",
+        // height: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
+        // overflow: "auto" 
     }
 
+    const styleHeadContentMiddleHomePage = {
+        width: "100%",
+        // position: "fixed",
+        top: "0%",
+        height: "10vh",
+        display: "flex",
+        flexDirection: "row",
+        gap: "5%",
+        alignItems: "center"
+    }
+
+    const styleMainContentMiddleHomePage = {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        gap: "5px"
+    }
+
+    const stylePostItem = {
+        width: "100%",
+        background: "gray",
+        height: "600px"
+    }
+
+
+
+    // Right Home Page
+    const styleRightHomePage = {
+        display: "flex",
+        width: "23%",
+        right: "0%",
+        // position: "fixed",
+        height: "100%",
+        flexDirection: "column",
+        alignItems: "center",
+        borderLeft: `1px solid ${color.OpacityGray}`,
+        padding: "2%",
+        gap: "3%"
+    }
+
+    const styleUserTabbar = {
+        display: "flex",
+        alignItems: "center",
+    }
+
+    const styleDropdownSettingUser = {
+        position: "absolute",
+        left: "88.6%",
+        top: "6.5%",
+        width: "10%",
+        background: color.Background,
+        display: "flex",
+        height: "90px",
+        padding: "19px 13px",
+        flexDirection: "column",
+        justifyContent: "space - between",
+        alignItems: "flex - start",
+        borderRadius: "14px",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+    }
+
+    const styleIconUserTabbar = {
+        display: "flex",
+        gap: "10px",
+    }
+
+    const styleFolowingZone = {
+        display: "flex",
+        width: "100%",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: "15px",
+        borderBottom: `1px solid ${color.Gray}`,
+        paddingBottom: "10%"
+    }
+
+    const styleFollowingTitle = {
+        color: color.Gray
+    }
+
+    const [files, setFiles] = useState(null)
+
+    const [isCreatePost, setIsCreatePost] = useState(false)
 
     return (
         <div style={homePage}>
             <div style={middleHomePage}>
-                Content
-            </div>
-            <div style={leftHomePage}>
-                <div id="AvatarBox" style={styleAvatarBox}>
-                    <div id="AvatarImageBox" style={styleAvatarImageBox}>
-                        <img id="AvatarImage" style={styleAvatarImage} src={authUser.profileImage} />
+                <div id="contentMiddleHomePage" style={styleContentMiddleHomePage}>
+                    <div id="headContentMiddleHomePage" style={styleHeadContentMiddleHomePage}>
+                        <div onClick={() => setIsCreatePost(true)} id="createpostButton" >+ Create Post</div>
+                        {isCreatePost && <CreatepostModal clickClose={() => setIsCreatePost(false)} files={files} setFiles={setFiles}></CreatepostModal>}
+                        <div>+ Create Event</div>
                     </div>
-                    <div id="AvatarText" style={styleAvatarText}>
-                        <TextButton >{authUser.username}</TextButton>
-                        <TextButton color={color.Gray} fontSize="12">{authUser.firstName} {authUser.lastName}</TextButton>
+                    <div id="mainContentMiddleHomePage" style={styleMainContentMiddleHomePage}>
+                        <div id="postItem" style={stylePostItem}></div>
+                        <div id="postItem" style={stylePostItem}></div>
+                        <div id="postItem" style={stylePostItem}></div>
                     </div>
                 </div>
-                <TextButton onClick={logout} hoverColor={color.Gray}>
-                    <LogoutIcon />
-                </TextButton>
-                <TextButton onClick={() => setIsEditProfile(true)}>Edit Profile</TextButton>
+            </div>
+            <div style={styleRightHomePage}>
+                <div id="userTabbar" style={styleUserTabbar}>
+                    <HeaderUser user={authUser}>
+                        <TextButton color={color.Gray} fontSize="12">{authUser?.firstName} {authUser?.lastName}</TextButton>
+                    </HeaderUser>
+                    <div id="iconUserTabbar" style={styleIconUserTabbar}>
+                        <TextButton fontSize="13" onClick={logout} hoverColor={color.Gray}>
+                            <LogoutIcon />
+                        </TextButton>
+                        <TextButton fontSize="13" onClick={() => setOpenSetting(!openSetting)} hoverColor={color.Gray}>
+                            <SettingIcon />
+                        </TextButton>
+                    </div>
+                    {openSetting && <div id="dropdownSettingUser" style={styleDropdownSettingUser}>
+                        <TextButton onClick={() => setIsEditProfile(true)}>Edit Profile</TextButton>
+                    </div>}
+                </div>
                 {isEditProflie && <SetProfile onClick={() => setIsEditProfile(false)} onSuccess={setIsEditProfile} setAuthUser={setAuthUser} />}
+
+                <div id="followingZone" style={styleFolowingZone}>
+                    <p id="followingTitle" style={styleFollowingTitle}>Following</p>
+                    <Avatar />
+                </div>
             </div>
         </div>
     )

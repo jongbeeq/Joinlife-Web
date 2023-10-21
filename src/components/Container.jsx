@@ -45,13 +45,15 @@ export default function Container({ children, width, height, backgroundColor, ha
 
     return (
         <>
-            {popUp && <div style={styleIndexBackground} onClick={clickClose}></div>}
+            {popUp && (<div style={styleIndexBackground} onClick={clickClose}></div>)}
             <div style={style}>
-                {popUp && <div style={styleCloseButton}>
-                    <TextButton onClick={clickClose} fontSize={height * 0.025} color={color.Gray}>X</TextButton>
-                </div>}
+                {popUp &&
+                    <div style={styleCloseButton}>
+                        <TextButton onClick={clickClose} fontSize={height * 0.025} color={color.Gray}>X</TextButton>
+                    </div>
+                }
                 {children}
-            </div>
+            </div >
         </>
     )
 }
