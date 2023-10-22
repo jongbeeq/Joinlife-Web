@@ -72,8 +72,6 @@ export default function HomePage() {
         height: "600px"
     }
 
-
-
     // Right Home Page
     const styleRightHomePage = {
         display: "flex",
@@ -132,16 +130,18 @@ export default function HomePage() {
 
     const [isCreatePost, setIsCreatePost] = useState(false)
 
+    const [test, setTest] = useState(null)
+
     return (
         <div style={homePage}>
             <div style={middleHomePage}>
                 <div id="contentMiddleHomePage" style={styleContentMiddleHomePage}>
                     <div id="headContentMiddleHomePage" style={styleHeadContentMiddleHomePage}>
-                        {/* <div onClick={() => setIsCreatePost(true)} id="createpostButton" >+ Create Post</div> */}
-                        {/* {isCreatePost &&  */}
-                        <CreatepostModal clickClose={() => setIsCreatePost(false)}></CreatepostModal>
-                        {/* } */}
-                        {/* <div>+ Create Event</div> */}
+                        <div onClick={() => setIsCreatePost(true)} id="createpostButton" >+ Create Post</div>
+                        {isCreatePost &&
+                            <CreatepostModal clickClose={() => setIsCreatePost(false)}></CreatepostModal>
+                        }
+                        <div>+ Create Event</div>
                     </div>
                     <div id="mainContentMiddleHomePage" style={styleMainContentMiddleHomePage}>
                         <div id="postItem" style={stylePostItem}></div>

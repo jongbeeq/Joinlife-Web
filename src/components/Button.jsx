@@ -3,7 +3,8 @@ export function BoxButton({ children, fontSize, height, backgroundColor, color, 
 
     const Button = styled.button`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 2%;
     ${fullWidth ? "width: inherit" : `width: calc(${fontSize}*10px)`};
     height: ${height}px;
     justify-content: center;
