@@ -126,11 +126,11 @@ export default function HomePage() {
         color: color.Gray
     }
 
-    const [files, setFiles] = useState(null)
+    // const [files, setFiles] = useState(null)
 
     const [isCreatePost, setIsCreatePost] = useState(false)
 
-    const [test, setTest] = useState(null)
+    // const [test, setTest] = useState(null)
 
     return (
         <div style={homePage}>

@@ -187,6 +187,7 @@ export default function SetProfile({ onClick, onSuccess }) {
             }
             if (category) {
                 const categoryArray = Object.values(category).filter(el => el !== null)
+                formData.append('category', null)
                 categoryArray.map(el => formData.append('category', el))
             }
             if (interest) {

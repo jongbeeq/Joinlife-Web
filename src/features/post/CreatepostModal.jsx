@@ -71,10 +71,16 @@ export default function CreatepostModal({ clickClose }) {
             }
             if (message) {
                 formData.append('message', message)
+                // console.log("🚀 ~ file: CreatepostModal.jsx:74 ~ handleSubmitPost ~ a:", a)
             }
             if (category) {
                 const categoryArray = Object.values(category).filter(el => el !== null)
+                // alert(categoryArray)
+                // console.log(categoryArray)
+                formData.append('category', null)
                 categoryArray.map(el => formData.append('category', el))
+                // alert(a)
+                // console.log(a)
             }
             setLoading(true)
             console.log("🚀 ~ file: CreatepostModal.jsx:35 ~ handleSubmitPost ~ formData:", formData)
