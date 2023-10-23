@@ -9,18 +9,14 @@ export default function InputMessagePost({ input, setInput }) {
     const handleChangeMessage = async (e) => {
         try {
             setMessage(e.target.value)
-            // setInput({ ...input, message: message })
-            console.log("🚀 ~ file: CreatepostModal.jsx:25 ~ handleChangeMessage ~ input", input)
             console.log(message)
         } catch (err) {
-            console.log("🚀 ~ file: CreatepostModal.jsx:25 ~ handleChangeMessage ~ err:", err)
+            alert(err)
         }
     }
     useEffect(
         () => {
-            console.log("🚀 ~ file: InputMessagePost.jsx:23 ~ InputMessagePost ~ input Before:", input)
             setInput({ ...input, message: message })
-            console.log("🚀 ~ file: InputMessagePost.jsx:23 ~ InputMessagePost ~ input After:", input)
         }, [message]
     )
 

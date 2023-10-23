@@ -14,7 +14,6 @@ export default function InputCategoryPost({ input, setInput }) {
         gap: "10px 8px",
         flexWrap: "wrap",
         borderRadius: "20px",
-        // border: `1px solid ${color.Gray}`,
         overflow: "auto"
     }
 
@@ -23,11 +22,6 @@ export default function InputCategoryPost({ input, setInput }) {
         height: "15%",
         borderRight: `1px solid ${color.SubGray}`,
         borderBottom: `1px solid ${color.SubGray}`,
-        // background: "red",
-        // objectFit: "cover",
-        // width: "fit-content",    
-        // maxWidth: "100%",
-        // maxHeight: "100%"
     }
 
     const [allCategory, setAllCategory] = useState([])
@@ -56,11 +50,8 @@ export default function InputCategoryPost({ input, setInput }) {
                     { ...category, [e.target.value]: null }
                     :
                     { ...category, [e.target.value]: e.target.value })
-            // setInput({ ...input, category: category })
-            console.log("🚀 ~ file: SetProfile.jsx:50 ~ handleChangeCategory ~ category:", category)
-            // console.log("🚀 ~ file: CreatepostModal.jsx:42 ~ handleChangeCategory ~ category:", input)
         } catch (err) {
-            console.log(err)
+            alert(err)
         }
     }
 
@@ -99,9 +90,7 @@ export default function InputCategoryPost({ input, setInput }) {
 
     useEffect(
         () => {
-            console.log("🚀 ~ file: InputMessagePost.jsx:23 ~ InputMessagePost ~ input Before:", input)
             setInput({ ...input, category: category })
-            console.log("🚀 ~ file: InputMessagePost.jsx:23 ~ InputMessagePost ~ input After:", input)
         }, [category]
     )
 

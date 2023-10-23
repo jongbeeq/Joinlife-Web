@@ -102,6 +102,17 @@ export function ImageIcon() {
     )
 }
 
+export function DropdownIcon() {
+    return (
+        <i className="fi fi-rr-menu-dots"></i>
+    )
+}
+
+export function CategorynIcon() {
+    return (
+        <i className="fi fi-rr-layers"></i>
+    )
+}
 
 
 

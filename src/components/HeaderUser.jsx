@@ -6,10 +6,10 @@ export default function HeaderUser({ user, children }) {
 
     const styleHeaderUserBox = {
         display: "flex",
-        alignItems: "space-between",
-        width: "200px",
-        height: "50px",
-        gap: "5%"
+        alignItems: "center",
+        gap: "5%",
+        width: "100%",
+        height: "100%",
     }
 
     const styleHeaderUserText = {
@@ -19,9 +19,15 @@ export default function HeaderUser({ user, children }) {
         alignItems: "flex-start",
     }
 
+    const styleHeaderUserAvatar = {
+        width: "40%"
+    }
+
     return (
         <div id="headerUserBox" style={styleHeaderUserBox}>
-            <Avatar src={user?.profileImage} />
+            <div id="headerUserAvatar" style={styleHeaderUserAvatar}>
+                <Avatar src={user?.profileImage} />
+            </div>
             <div id="headerUserText" style={styleHeaderUserText}>
                 <Link to={`/profile/${user?.id}`}>
                     <TextButton >{user?.username}</TextButton>

@@ -4,8 +4,8 @@ export default function Avatar({ src }) {
     const color = themeColor()
     const styleAvatarImageBox = {
         objectFit: "cover",
-        width: "25%",
-        height: "100%",
+        width: "100%",
+        aspectRatio: "1",
         borderRadius: "100%",
         display: "flex",
         justifyContent: "center",

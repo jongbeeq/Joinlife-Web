@@ -21,11 +21,9 @@ export default function InputFilePost({ input, setInput }) {
         borderRadius: "3%",
         position: "relative",
         overflow: "hidden",
-        // background: "red"
     }
 
     const styleShowFileContainer = {
-        // position: "relative",
         display: "grid",
         width: "100%",
         height: "100%",
@@ -33,7 +31,6 @@ export default function InputFilePost({ input, setInput }) {
         gridTemplateRows: "auto auto",
         objectFit: "contain",
         overflow: "auto",
-        // gap: "0.5%"
     }
 
     const styleImagePost = {
@@ -72,8 +69,6 @@ export default function InputFilePost({ input, setInput }) {
 
 
     function FileBox({ elFile, index }) {
-        console.log("🚀 ~ file: CreatepostModal.jsx:111 ~ FileBox ~ elFile:", elFile)
-        // alert(`FileBox-elFile:    ${elFile} index:   ${index}`)
         let fileContent
 
         const urlFile = URL.createObjectURL(elFile)
@@ -96,11 +91,8 @@ export default function InputFilePost({ input, setInput }) {
                         onClick={
                             () => {
                                 files.splice(index, 1)
-                                console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
-                                console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files.length)
                                 setFiles(files)
                                 setRemoveFile(true)
-                                // alert(files.length)
                             }
                         }
                         id="removeFileButton" style={styleRemoveFileButton}>X</p>
@@ -122,9 +114,7 @@ export default function InputFilePost({ input, setInput }) {
 
     useEffect(
         () => {
-            console.log("🚀 ~ file: InputMessagePost.jsx:23 ~ InputMessagePost ~ input Before:", input)
             setInput({ ...input, files: files })
-            console.log("🚀 ~ file: InputMessagePost.jsx:23 ~ InputMessagePost ~ input After:", input)
         }, [files]
     )
 
@@ -134,7 +124,7 @@ export default function InputFilePost({ input, setInput }) {
                 <div id="fileShowContainer" style={styleShowFileContainer}>
                     {files?.map((el, index) => {
                         console.log("🚀 ~ file: CreatepostModal.jsx:167 ~ CreatepostModal ~ files:", files)
-                        return (<FileBox key={el} elFile={el} index={index}></FileBox>)
+                        return (<FileBox key={index} elFile={el} index={index}></FileBox>)
                     })}
                 </div>
             }
