@@ -3,78 +3,81 @@ import Container from "../../components/Container"
 import themeColor from "../../variables/color"
 import axios from "../../configs/axios"
 import { BoxButton } from "../../components/Button"
-import { ImageIcon } from "../../icon/icon"
 import Loading from "../../components/Loading"
+import InputFilePost from "./InputFilePost"
+import InputCategoryPost from "./InputCategoryPost"
+import InputMessagePost from "./InputMessagePost"
 
 export default function CreatepostModal({ clickClose }) {
     const color = themeColor()
-    const styleCreatepostButton = {
-        cursor: "pointer"
-    }
 
-    const [isOpen, setIsOpen] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [allCategory, setAllCategory] = useState([])
-    const [files, setFiles] = useState([])
-    const [previousFile, setPreviousFile] = useState(0)
-    const [message, setMessage] = useState(null)
-    const [category, setCategory] = useState({})
+    // const [allCategory, setAllCategory] = useState([])
+    // const [files, setFiles] = useState([])
+    // const [message, setMessage] = useState(null)
+    // const [category, setCategory] = useState(0)
+    const [input, setInput] = useState({})
 
-    const fileEl = useRef(null)
 
-    const handleChangeMessage = async (e) => {
-        try {
-            setMessage(e.target.value)
-            console.log(message)
-        } catch (err) {
-            console.log("🚀 ~ file: CreatepostModal.jsx:25 ~ handleChangeMessage ~ err:", err)
-        }
-    }
+    // const handleChangeMessage = async (e) => {
+    //     try {
+    //         setMessage(e.target.value)
+    //         // setInput({ ...input, message: message })
+    //         console.log("🚀 ~ file: CreatepostModal.jsx:25 ~ handleChangeMessage ~ input", input)
+    //         console.log(message)
+    //     } catch (err) {
+    //         console.log("🚀 ~ file: CreatepostModal.jsx:25 ~ handleChangeMessage ~ err:", err)
+    //     }
+    // }
 
-    const handleChangeCategory = async (e) => {
-        try {
-            setCategory(
-                category[e.target.value]
-                    ?
-                    { ...category, [e.target.value]: null }
-                    :
-                    { ...category, [e.target.value]: e.target.value })
+    // const handleChangeCategory = async (e) => {
+    //     try {
+    //         setCategory(
+    //             category[e.target.value]
+    //                 ?
+    //                 { ...category, [e.target.value]: null }
+    //                 :
+    //                 { ...category, [e.target.value]: e.target.value })
+    //         // setInput({ ...input, category: category })
+    //         console.log("🚀 ~ file: SetProfile.jsx:50 ~ handleChangeCategory ~ category:", category)
+    //         console.log("🚀 ~ file: CreatepostModal.jsx:42 ~ handleChangeCategory ~ category:", input)
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
-            console.log("🚀 ~ file: SetProfile.jsx:50 ~ handleChangeCategory ~ category:", category)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    useEffect(
-        () => {
-            axios.get("/category")
-                .then(
-                    res => {
-                        console.log(res.data.category)
-                        setAllCategory(res.data.category)
-                    }
-                )
-                .catch(
-                    console.log
-                )
-        }
-        , [])
+    // useEffect(
+    //     () => {
+    //         axios.get("/category")
+    //             .then(
+    //                 res => {
+    //                     console.log(res.data.category)
+    //                     setAllCategory(res.data.category)
+    //                 }
+    //             )
+    //             .catch(
+    //                 console.log
+    //             )
+    //     }
+    //     , [])
 
     const handleSubmitPost = async (e) => {
         try {
             e.preventDefault()
+
             // alert("create post")
+            // alert(`Submit Category:    ${category}`)
+            console.log("🚀 ~ file: CreatepostModal.jsx:66 ~ handleSubmitPost ~ category:", input)
             const formData = new FormData()
-            if (files) {
-                files.map(el => formData.append('image', el))
+            if (input.files) {
+                input.files.map(el => formData.append('image', el))
             }
-            if (message) {
-                formData.append('message', message)
+            if (input.message) {
+                formData.append('message', input.message)
                 // console.log("🚀 ~ file: CreatepostModal.jsx:74 ~ handleSubmitPost ~ a:", a)
             }
-            if (category) {
-                const categoryArray = Object.values(category).filter(el => el !== null)
+            if (input.category) {
+                const categoryArray = Object.values(input.category).filter(el => el !== null)
                 // alert(categoryArray)
                 // console.log(categoryArray)
                 formData.append('category', null)
@@ -96,6 +99,8 @@ export default function CreatepostModal({ clickClose }) {
         }
 
     }
+    // console.log("🚀 ~ file: CreatepostModal.jsx:102 ~ handleSubmitPost ~ handleSubmitPost:", handleSubmitPost)
+    // console.log("🚀 ~ file: CreatepostModal.jsx:102 ~ handleSubmitPost ~ handleSubmitPost:", handleSubmitPost)
 
 
     const stylePostForm = {
@@ -108,164 +113,93 @@ export default function CreatepostModal({ clickClose }) {
         justifyContent: "flex-start",
     }
 
-    const styleInputFilePost = {
-        width: "75%",
-        height: "75%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItem: "center",
-        border: `1px solid ${color.SubGray}`,
-        borderRadius: "3%",
-        position: "relative",
-        overflow: "hidden",
-        // background: "red"
-    }
+    // const styleFileBox = {
+    //     border: `0.5px solid ${color.White}`,
+    //     position: "relative",
+    //     display: "flex",
+    //     justifyContent: "center",
+    //     alignItem: "center",
+    //     overFlow: "hidden",
+    //     objectFit: "contain",
+    // }
 
-    const styleShowFileContainer = {
-        // position: "relative",
-        display: "grid",
-        width: "100%",
-        height: "100%",
-        gridTemplateColumns: "auto auto",
-        gridTemplateRows: "auto auto",
-        objectFit: "contain",
-        overflow: "auto",
-        // gap: "0.5%"
-    }
+    // const styleRemoveFileButton = {
+    //     position: "absolute",
+    //     cursor: "pointer",
+    //     top: "3%",
+    //     right: "5%",
+    //     zIndex: "100"
+    // }
 
-    const styleFileBox = {
-        border: `0.5px solid ${color.White}`,
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItem: "center",
-        overFlow: "hidden",
-        objectFit: "contain",
-    }
+    // const styleImagePost = {
+    //     width: "max-content",
+    //     maxWidth: "100%",
+    //     height: "auto",
+    //     objectFit: "cover"
+    // }
 
-    const styleRemoveFileButton = {
-        position: "absolute",
-        cursor: "pointer",
-        top: "3%",
-        right: "5%",
-        zIndex: "100"
-    }
+    // const styleMessageInput = {
+    // }
 
-    const styleImagePost = {
-        width: "max-content",
-        maxWidth: "100%",
-        height: "auto",
-        objectFit: "cover"
-    }
+    // const styleCategoryBox = {
+    //     display: "flex",
+    //     width: "100%",
+    //     height: "40%",
+    //     padding: "10px",
+    //     alignItems: "flex-start",
+    //     alignContent: "flex-start",
+    //     gap: "10px 8px",
+    //     flexWrap: "wrap",
+    //     borderRadius: "20px",
+    //     // border: `1px solid ${color.Gray}`,
+    //     overflow: "auto"
+    // }
 
-    const styleInputButton = {
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        position: "absolute",
-        bottom: "0%",
-        zIndex: "150"
-    }
-
-    const styleMessageInput = {
-    }
-
-    const styleCategoryBox = {
-        display: "flex",
-        width: "100%",
-        height: "40%",
-        padding: "10px",
-        alignItems: "flex-start",
-        alignContent: "flex-start",
-        gap: "10px 8px",
-        flexWrap: "wrap",
-        borderRadius: "20px",
-        // border: `1px solid ${color.Gray}`,
-        overflow: "auto"
-    }
-
-    const styleInputCategory = {
-        width: "40%",
-        height: "15%",
-        borderRight: `1px solid ${color.SubGray}`,
-        borderBottom: `1px solid ${color.SubGray}`,
-        // background: "red",
-        // objectFit: "cover",
-        // width: "fit-content",    
-        // maxWidth: "100%",
-        // maxHeight: "100%"
-    }
-
-    function FileBox({ elFile, index }) {
-        console.log("🚀 ~ file: CreatepostModal.jsx:111 ~ FileBox ~ elFile:", elFile)
-        // alert(`FileBox-elFile:    ${elFile} index:   ${index}`)
-        let fileContent
-
-        const urlFile = URL.createObjectURL(elFile)
-        const typeFile = elFile.type.split("/")[0]
-        const [removeFile, setRemoveFile] = useState(false)
-        if (typeFile === "image") {
-            fileContent = <img id="imagePost" style={styleImagePost} key={elFile.name} src={urlFile}></img>
-        }
-
-        if (typeFile === "video") {
-            fileContent = <video key={elFile.name} src={urlFile} controls autoPlay muted></video>
-        }
+    // const styleInputCategory = {
+    //     width: "40%",
+    //     height: "15%",
+    //     borderRight: `1px solid ${color.SubGray}`,
+    //     borderBottom: `1px solid ${color.SubGray}`,
+    //     // background: "red",
+    //     // objectFit: "cover",
+    //     // width: "fit-content",    
+    //     // maxWidth: "100%",
+    //     // maxHeight: "100%"
+    // }
 
 
-        return (
-            !removeFile &&
-            (
-                <div key={elFile.name} id="fileBox" style={styleFileBox}>
-                    <p
-                        onClick={
-                            () => {
-                                files.splice(index, 1)
-                                console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files)
-                                console.log("🚀 ~ file: CreatepostModal.jsx:125 ~ CreatepostModal ~ files:", files.length)
-                                setFiles(files)
-                                setRemoveFile(true)
-                            }
-                        }
-                        id="removeFileButton" style={styleRemoveFileButton}>X</p>
-                    {fileContent}
-                </div>
-            )
-        )
-    }
+    // function CategoryButton({ categoryName }) {
+    //     const [haveCategory, setHaveCat] = useState(false)
+    //     useEffect(() => {
+    //         const findCategory = Object.values(category)
+    //             .find(el => el === categoryName)
+    //         setHaveCat(findCategory)
+    //     },
+    //         [category]
+    //     )
 
-    function CategoryButton({ categoryName }) {
-        const [haveCategory, setHaveCat] = useState(false)
-        useEffect(() => {
-            const findCategory = Object.values(category)
-                .find(el => el === categoryName)
-            setHaveCat(findCategory)
-        },
-            [category]
-        )
+    //     const styleCreateButton = {
+    //         display: "flex",
+    //         width: "50px",
+    //         height: "20px",
+    //         padding: "10px",
+    //         justifyContent: "center",
+    //         alignItems: "center",
+    //         gap: "2px",
+    //         flexShrink: "0",
+    //         borderRadius: "8px",
+    //         fontSize: "10px",
+    //         color: haveCategory ? color.Orange : color.Gray,
+    //         border: `1px solid ${haveCategory ? color.Orange : color.Gray}`,
+    //     }
 
-        const styleCreateButton = {
-            display: "flex",
-            width: "50px",
-            height: "20px",
-            padding: "10px",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "2px",
-            flexShrink: "0",
-            borderRadius: "8px",
-            fontSize: "10px",
-            color: haveCategory ? color.Orange : color.Gray,
-            border: `1px solid ${haveCategory ? color.Orange : color.Gray}`,
-        }
+    //     return (
+    //         <>
+    //             <button style={styleCreateButton} value={categoryName} onClick={handleChangeCategory}>{categoryName}</button>
+    //         </>
+    //     )
+    // }
 
-        return (
-            <>
-                <button style={styleCreateButton} value={categoryName} onClick={handleChangeCategory}>{categoryName}</button>
-            </>
-        )
-    }
 
     return (
         <>
@@ -274,7 +208,7 @@ export default function CreatepostModal({ clickClose }) {
             {/* {isOpen && */}
             <Container Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={clickClose}>
                 <form id="postForm" style={stylePostForm} onSubmit={handleSubmitPost}>
-                    <textarea
+                    {/* <textarea
                         onChange={handleChangeMessage}
                         type="textarea"
                         id="messageInput"
@@ -284,30 +218,24 @@ export default function CreatepostModal({ clickClose }) {
                         placeholder="What on your mind?"
                     >
 
-                    </textarea>
-                    <div id="inputCategory" style={styleInputCategory}>
+                    </textarea> */}
+                    <InputMessagePost input={input} setInput={setInput}></InputMessagePost>
+                    {/* <div id="inputCategory" style={styleInputCategory}>
                         <p>Category</p>
                         <div style={styleCategoryBox}>
                             {allCategory.map(category => <CategoryButton key={category} categoryName={category} />)}
                         </div>
-                    </div>
-                    <div id="inputFilePost" style={styleInputFilePost}>
+                    </div> */}
+                    {/* <div id="inputFilePost" style={styleInputFilePost}>
                         {
-                            // (!openInputFile) && (
                             <div id="fileShowContainer" style={styleShowFileContainer}>
                                 {files?.map((el, index) => {
                                     console.log("🚀 ~ file: CreatepostModal.jsx:167 ~ CreatepostModal ~ files:", files)
                                     return (<FileBox key={el} elFile={el} index={index}></FileBox>)
                                 })}
                             </div>
-                            // )
-                            // files.map(el => {
-                            // const urlFile = URL.createObjectURL(el)
-                            // return (<div key="el">{el}</div>)
-                            // })
                         }
                         {
-                            // (openInputFile) &&
                             <div id="inputButton" style={styleInputButton}>
                                 <BoxButton fontSize="13" height="30" backgroundColor={color.White} color={color.SubGray} onClick={(e) => {
                                     e.preventDefault()
@@ -324,35 +252,42 @@ export default function CreatepostModal({ clickClose }) {
                                     onChange={
                                         e => {
                                             if (previousFile) {
-                                                alert("have image")
-                                                console.log(files)
+                                                // alert("have image")
+                                                // alert(`files before: ${files}`)
+                                                // alert(`precious before: ${previousFile}`)
+                                                // console.log("🚀 ~ file: CreatepostModal.jsx:323 ~ previousFile:", previousFile)
+                                                // console.log(files)
                                                 setFiles([...files, ...Object.values(e.target.files)])
-                                                setPreviousFile(files.length)
+                                                // alert(`files after: ${files}`)
+                                                // setPreviousFile(files.length)
+                                                // alert(`precious after: ${previousFile}`)
+                                                // console.log("🚀 ~ file: CreatepostModal.jsx:328 ~ previousFile:", previousFile)
                                             } else {
-                                                alert("not have")
+                                                // alert("not have")
+                                                // alert(`files before: ${files}`)
+                                                // alert(`precious before: ${previousFile}`)
+                                                // console.log("🚀 ~ file: CreatepostModal.jsx:330 ~ previousFile:", previousFile)
                                                 setFiles(Object.values(e.target.files))
-                                                setPreviousFile(files.length)
+                                                // setPreviousFile(files.length)
+                                                // alert(`files before: ${files}`)
+                                                // alert(`precious after: ${previousFile}`)
+                                                // console.log("🚀 ~ file: CreatepostModal.jsx:334 ~ previousFile:", previousFile)
                                             }
-                                            // console.log(Object.values(e.target.files))
-                                            // console.log(files)
-                                            // setFiles([...files, Object.values(e.target.files)])
-                                            // setFiles(Object.values(e.target.files))
-                                            // console.log(files)
-
-                                            // alert(files.length)
                                         }
                                     }
                                     ref={fileEl}
                                 />
                             </div>
                         }
-                    </div>
+                    </div> */}
+                    <InputCategoryPost input={input} setInput={setInput}></InputCategoryPost>
+                    <InputFilePost input={input} setInput={setInput}></InputFilePost>
+                    {/* <input type="file" onChange={(e) => setTest(e.target.files[0])}></input>
+                    {test && <img src={URL.createObjectURL(test)}></img>} */}
 
                     <BoxButton backgroundColor={color.Orange} height={30} fontSize="16" color={color.White}>create post</BoxButton>
                 </form>
             </Container >
-            {/* } */}
-            {/* } */}
         </>
     )
 }
