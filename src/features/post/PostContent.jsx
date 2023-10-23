@@ -1,18 +1,6 @@
-import { useEffect, useState } from "react"
 import themeColor from "../../variables/color"
 
 export default function PostContent({ postObj }) {
-    const [test, setTest] = useState()
-
-    // useEffect(
-    //     () => {
-    //         alert('Effect Active')
-
-    //     },
-    //     [postObj]
-    // )
-
-
 
     const color = themeColor()
 
@@ -60,12 +48,10 @@ export default function PostContent({ postObj }) {
         console.log(typeFile)
 
         if (typeFile === "image") {
-            // alert(`🚀 ~ file: PostContent.jsx:64 ~ FileBox ~ filePost:" ${filePost}`)
             fileContent = <img id="imagePost" style={styleImagePost} key={index} src={filePost}></img>
         }
 
         if (typeFile === "video") {
-            // alert(`🚀 ~ file: PostContent.jsx:68 ~ FileBox ~ filePost:" ${filePost}`)
             fileContent = <video id="imagePost" key={index} src={filePost} controls autoPlay muted></video>
         }
 

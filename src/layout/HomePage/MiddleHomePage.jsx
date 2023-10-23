@@ -41,22 +41,14 @@ export default function MiddleHomePage() {
 
     const [isCreatePost, setIsCreatePost] = useState(false)
     const [allPost, setAllpost] = useState([])
-    // const refreshHome = () => <Navigate to="/" />
     const [refresh, setRefresh] = useState(false)
 
     const createPost = async (data) => {
-        // try {
         const res = await axios.post('/post', data)
         const newPost = res.data;
         console.log(allPost)
-        // setLoading(true)
         setAllpost([newPost, ...allPost])
         setRefresh(!refresh)
-        // } catch (err) {
-        //     alert(err.response.data.message)
-        // } finally {
-        //     setLoading(false)
-        // }
     };
 
     console.log(allPost)

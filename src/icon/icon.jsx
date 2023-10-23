@@ -114,6 +114,28 @@ export function CategorynIcon() {
     )
 }
 
+export function LikeIcon() {
+    return (
+        <i className="fi fi-rr-heart"></i>
+    )
+}
+
+export function CommentIcon() {
+    return (
+        <i className="fi fi-rr-comment-alt-middle"></i>
+    )
+}
+
+export function ShareIcon() {
+    return (
+        <i className="fi fi-rr-comment-alt-middle"></i>
+    )
+}
+
+
+
+
+
 
 
 

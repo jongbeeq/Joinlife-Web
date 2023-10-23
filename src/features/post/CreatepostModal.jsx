@@ -6,7 +6,6 @@ import Loading from "../../components/Loading"
 import InputFilePost from "./InputFilePost"
 import InputCategoryPost from "./InputCategoryPost"
 import InputMessagePost from "./InputMessagePost"
-import { Navigate } from "react-router-dom"
 
 export default function CreatepostModal({ createPost, clickClose }) {
     const color = themeColor()
