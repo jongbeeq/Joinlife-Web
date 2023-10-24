@@ -4,9 +4,11 @@ import HeaderUser from "../../components/HeaderUser"
 import { DropdownIcon } from "../../icon/icon"
 import formatTimeAgo from "../../utils/time-ago"
 import themeColor from "../../variables/color"
+import { useAuth } from "../../hooks/use-auth"
 
 export default function PostHeader({ postObj, deletePost }) {
     const color = themeColor()
+
     const stylePostHeader = {
         width: "100%",
         height: "20%",
@@ -85,6 +87,15 @@ export default function PostHeader({ postObj, deletePost }) {
         boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
     }
 
+    const { authUser } = useAuth()
+    const isUser = (postObj.user.id === authUser.id)
+    let postCreator
+    if (isUser) {
+        postCreator = authUser
+    } else {
+        postCreator = postObj.user
+    }
+
     const [openDropdown, setOpenDropdown] = useState(false)
 
     const handleClickDelete = () => {
@@ -95,7 +106,7 @@ export default function PostHeader({ postObj, deletePost }) {
         <div id="postHeader" style={stylePostHeader}>
             <div id="topHeaderPost" style={styleTopHeaderPost}>
                 <div id="lefttopHeaderPost" style={styleLeftTopHeaderPost}>
-                    <HeaderUser user={postObj.user}>
+                    <HeaderUser user={postCreator}>
                         <div id="topHeaderPostDuration" style={styleTopHeaderPostDuration}>
                             {formatTimeAgo(postObj.createdAt)}
                         </div>
@@ -108,7 +119,12 @@ export default function PostHeader({ postObj, deletePost }) {
                     {
                         openDropdown &&
                         <div id="dropdownPost" style={styleDropdownPost}>
-                            <TextButton onClick={handleClickDelete} fontSize="14">Delete Post</TextButton>
+                            {isUser
+                                ?
+                                <TextButton onClick={handleClickDelete} fontSize="14">Delete Post</TextButton>
+                                :
+                                <TextButton fontSize="14">Report</TextButton>
+                            }
                         </div>
                     }
                 </div>

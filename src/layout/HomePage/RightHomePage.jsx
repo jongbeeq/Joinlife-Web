@@ -12,7 +12,7 @@ export default function RightHomePage() {
 
     const color = themeColor()
 
-    const { authUser, setAuthUser } = useAuth()
+    const { authUser } = useAuth()
 
     const [isEditProflie, setIsEditProfile] = useState(false)
     const [openSetting, setOpenSetting] = useState(false)
