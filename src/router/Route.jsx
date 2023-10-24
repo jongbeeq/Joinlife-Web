@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             { path: 'search', element: <SearchPage /> },
             { path: 'trend', element: <TrendPage /> },
             { path: 'event/:eventId', element: <EventPage /> },
-            { path: 'profile/:profileId', element: <ProfilePage /> },
+            { path: 'profile/:userId', element: <ProfilePage /> },
         ]
     },
     {

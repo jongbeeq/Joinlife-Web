@@ -158,9 +158,7 @@ export function InputFile({ width, height, circle, fontSize, multiFile, file, se
                 multiple={multiFile && "multiple"}
                 onChange={e => {
                     if (e.target.files[0]) {
-                        console.log(e.target.files)
                         setFile(e.target.files[0]);
-                        console.log("🚀 ~ file: InputBox.jsx:163 ~ InputFile ~ setFile:", file)
                     }
                 }}
                 ref={fileEl} />

@@ -37,7 +37,6 @@ const validateRegister = input => {
             acc[path[0]] = message
             return acc
         }, {})
-        console.log(result)
         if (result.password === variables.passwordPattenCondition(input.password)) {
             result.password = variables.passwordPattenMessage
         }

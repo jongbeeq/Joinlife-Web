@@ -123,7 +123,6 @@ export default function InputFilePost({ input, setInput }) {
             {
                 <div id="fileShowContainer" style={styleShowFileContainer}>
                     {files?.map((el, index) => {
-                        console.log("🚀 ~ file: CreatepostModal.jsx:167 ~ CreatepostModal ~ files:", files)
                         return (<FileBox key={index} elFile={el} index={index}></FileBox>)
                     })}
                 </div>
@@ -145,26 +144,9 @@ export default function InputFilePost({ input, setInput }) {
                         onChange={
                             e => {
                                 if (previousFile) {
-                                    // alert("have image")
-                                    // alert(`files before: ${files}`)
-                                    // alert(`precious before: ${previousFile}`)
-                                    // console.log("🚀 ~ file: CreatepostModal.jsx:323 ~ previousFile:", previousFile)
-                                    // console.log(files)
                                     setFiles([...files, ...Object.values(e.target.files)])
-                                    // alert(`files after: ${files}`)
-                                    // setPreviousFile(files.length)
-                                    // alert(`precious after: ${previousFile}`)
-                                    // console.log("🚀 ~ file: CreatepostModal.jsx:328 ~ previousFile:", previousFile)
                                 } else {
-                                    // alert("not have")
-                                    // alert(`files before: ${files}`)
-                                    // alert(`precious before: ${previousFile}`)
-                                    // console.log("🚀 ~ file: CreatepostModal.jsx:330 ~ previousFile:", previousFile)
                                     setFiles(Object.values(e.target.files))
-                                    // setPreviousFile(files.length)
-                                    // alert(`files before: ${files}`)
-                                    // alert(`precious after: ${previousFile}`)
-                                    // console.log("🚀 ~ file: CreatepostModal.jsx:334 ~ previousFile:", previousFile)
                                 }
                             }
                         }

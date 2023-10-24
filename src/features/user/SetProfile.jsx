@@ -66,12 +66,11 @@ export default function SetProfile({ onClick, onSuccess, skip }) {
             axios.get("/category")
                 .then(
                     res => {
-                        console.log(res.data.category)
                         setAllCategory(res.data.category)
                     }
                 )
                 .catch(
-                    console.log
+                    err => alert(err.response.data.message)
                 )
         }
         , [])
@@ -85,9 +84,8 @@ export default function SetProfile({ onClick, onSuccess, skip }) {
                     :
                     { ...category, [e.target.value]: e.target.value })
 
-            console.log("🚀 ~ file: SetProfile.jsx:50 ~ handleChangeCategory ~ category:", category)
         } catch (err) {
-            console.log(err)
+            alert(err.response.data.message)
         }
     }
     const handleChangeInterest = async (e) => {
@@ -99,15 +97,13 @@ export default function SetProfile({ onClick, onSuccess, skip }) {
                     :
                     { ...interest, [e.target.value]: e.target.value })
 
-            console.log("🚀 ~ file: SetProfile.jsx:50 ~ handleChangeCategory ~ category:", interest)
         } catch (err) {
-            console.log(err)
+            alert(err.response.data.message)
         }
     }
 
     const handleChangeDescription = (e) => {
         setDescription(e.target.value)
-        console.log(description)
     }
 
     function CategoryButton({ categoryName }) {
@@ -197,12 +193,10 @@ export default function SetProfile({ onClick, onSuccess, skip }) {
             setLoading(true)
             const res = await axios.patch('/user', formData)
             const newProfile = res.data
-            setAuthUser(res.data)
-            console.log(newProfile)
+            setAuthUser(newProfile)
             onSuccess && onSuccess(false)
         } catch (err) {
             alert(err)
-            console.log(err)
         } finally {
             setLoading(false)
         }

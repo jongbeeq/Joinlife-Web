@@ -32,12 +32,11 @@ export default function InputCategoryPost({ input, setInput }) {
             axios.get("/category")
                 .then(
                     res => {
-                        console.log(res.data.category)
                         setAllCategory(res.data.category)
                     }
                 )
                 .catch(
-                    console.log
+                    err => alert(err.response.data.message)
                 )
         }
         , [])

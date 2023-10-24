@@ -46,7 +46,6 @@ export default function MiddleHomePage() {
     const createPost = async (data) => {
         const res = await axios.post('/post', data)
         const newPost = res.data;
-        console.log(allPost)
         setAllpost([newPost, ...allPost])
         setRefresh(!refresh)
     };
@@ -60,8 +59,6 @@ export default function MiddleHomePage() {
         }
 
     }
-
-    console.log(allPost)
 
     useEffect(
         () => {

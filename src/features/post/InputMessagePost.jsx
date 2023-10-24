@@ -9,9 +9,8 @@ export default function InputMessagePost({ input, setInput }) {
     const handleChangeMessage = async (e) => {
         try {
             setMessage(e.target.value)
-            console.log(message)
         } catch (err) {
-            alert(err)
+            alert(err.response.data.message)
         }
     }
     useEffect(

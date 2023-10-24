@@ -8,7 +8,7 @@ import SetProfile from "../features/user/SetProfile"
 import { useAuth } from "../hooks/use-auth"
 
 export default function ProfilePage() {
-    const { profileId } = useParams()
+    const { userId } = useParams()
     const [profileUser, setProfileUser] = useState({})
     const [isSetProfile, setIsSetProfile] = useState(false)
     const { authUser } = useAuth()
@@ -17,15 +17,34 @@ export default function ProfilePage() {
 
     useEffect(
         () => {
-            axios.get(`/user/${profileId}`).then(res => {
+            alert(`Effect userId:   ${userId}`)
+            axios.get(`/user/${userId}`).then(res => {
                 console.log("🚀 ~ file: ProfilePage.jsx:15 ~ axios.get ~ res.data:", res.data)
                 setProfileUser(res.data)
                 console.log("🚀 ~ file: ProfilePage.jsx:9 ~ ProfilePage ~ profileUser:", profileUser)
             }
+            ).catch(
+                err => {
+                    alert(err.response.data.message)
+                    console.log("🚀 ~ file: ProfilePage.jsx:28 ~ ProfilePage ~ err.response.data.message:", err.response.data.message)
+                }
             )
         }
-        , [profileId]
+        , [userId]
     )
+
+    console.log("🚀 ~ file: ProfilePage.jsx:30 ~ ProfilePage ~ profileUser:", profileUser)
+    const isUser = (profileUser.id === authUser.id)
+    let postCreator
+    // alert(authUser.id)
+    // alert(profileUser.id)
+    if (isUser) {
+        // alert("yes user")
+        postCreator = authUser
+    } else {
+        // alert("not user")
+        postCreator = profileUser
+    }
 
     const {
         username,
@@ -210,7 +229,9 @@ export default function ProfilePage() {
                                 <p id="fullName" style={styleFullName}>{firstName} {lastName}</p>
                             </div>
                             <div id="rightHeadTextProfile" style={styleRightHeadTextProfile}>
-                                <BoxButton onClick={() => setIsSetProfile(true)} backgroundColor={color.Black} color={color.White} fontSize="10" height={40}>Edit Profile</BoxButton>
+                                {
+                                    <BoxButton onClick={() => setIsSetProfile(true)} backgroundColor={color.Black} color={color.White} fontSize="10" height={40}>Edit Profile</BoxButton>
+                                }
                                 {isSetProfile && <SetProfile onSuccess={() => setIsSetProfile(false)} onClick={() => setIsSetProfile(false)}></SetProfile>}
                             </div>
                         </div>

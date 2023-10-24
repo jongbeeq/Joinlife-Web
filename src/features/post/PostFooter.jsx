@@ -38,9 +38,6 @@ export default function PostFooter({ postObj }) {
         flexDirection: "column"
     }
 
-    console.log(postObj)
-
-
     return (
         <div id="postFooter" style={stylePostFooter}>
             <div id="inreractBar" style={styleInreractBar}>

@@ -33,12 +33,10 @@ export default function CreateAccountForm({ onClick }) {
     const handleSubmitForm = e => {
         e.preventDefault();
         const validationError = validateRegister(input);
-        console.log(validationError)
         if (validationError) {
             return setError(validationError)
         }
         setError({});
-        console.log(error)
         register(input).then(() => {
             setIsSubmit("Sign Up Success")
         })

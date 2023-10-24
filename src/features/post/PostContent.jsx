@@ -39,13 +39,10 @@ export default function PostContent({ postObj }) {
 
 
     function FileBox({ filePost, index }) {
-        console.log("🚀 ~ file: PostContent.jsx:42 ~ FileBox ~ filePost:", filePost)
-        console.log("🚀 ~ file: PostContent.jsx:42 ~ FileBox ~ filePost:", typeof (filePost))
 
         let fileContent
 
         const typeFile = filePost?.split("https://")[1].split("/")[2]
-        console.log(typeFile)
 
         if (typeFile === "image") {
             fileContent = <img id="imagePost" style={styleImagePost} key={index} src={filePost}></img>
@@ -63,9 +60,6 @@ export default function PostContent({ postObj }) {
             )
         )
     }
-
-    console.log(postObj.postFiles.file)
-    console.log(typeof (postObj.postFiles.file))
 
     return (
         <div id="postContent" style={stylePostContent}>

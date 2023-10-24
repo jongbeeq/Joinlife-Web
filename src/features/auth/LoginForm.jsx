@@ -21,7 +21,6 @@ export default function LoginForm() {
 
     const handleSubmitForm = e => {
         e.preventDefault();
-        console.log(input)
         login(input).catch(err => {
             setError(err.response.data.message)
         });

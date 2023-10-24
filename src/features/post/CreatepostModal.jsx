@@ -33,7 +33,6 @@ export default function CreatepostModal({ createPost, clickClose }) {
             createPost(formData)
             clickClose()
         } catch (err) {
-            console.log("🚀 ~ file: CreatepostModal.jsx:34 ~ handleSubmitPost ~ err:", err)
             alert(err.response.data.message)
         } finally {
             setLoading(false)
