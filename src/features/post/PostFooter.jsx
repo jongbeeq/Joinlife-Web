@@ -1,11 +1,7 @@
-import Avatar from "../../components/Avatar"
 import { CommentIcon, LikeIcon, ShareIcon } from "../../icon/icon"
-import themeColor from "../../variables/color"
-import formatTimeAgo from "../../utils/time-ago"
 import CommentItem from "../comment/CommentItem"
 
 export default function PostFooter({ postObj }) {
-    const color = themeColor()
     const stylePostFooter = {
         display: "flex",
         flexDirection: "column",

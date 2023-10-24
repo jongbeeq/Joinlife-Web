@@ -21,7 +21,6 @@ export default function RightHomePage() {
         display: "flex",
         width: "23%",
         right: "0%",
-        // position: "fixed",
         height: "100%",
         flexDirection: "column",
         alignItems: "center",
@@ -31,6 +30,7 @@ export default function RightHomePage() {
     }
 
     const styleUserTabbar = {
+        width: "100%",
         display: "flex",
         alignItems: "center",
     }
@@ -91,7 +91,7 @@ export default function RightHomePage() {
                     <TextButton onClick={() => setIsEditProfile(true)}>Edit Profile</TextButton>
                 </div>}
             </div>
-            {isEditProflie && <SetProfile onClick={() => setIsEditProfile(false)} onSuccess={setIsEditProfile} setAuthUser={setAuthUser} />}
+            {isEditProflie && <SetProfile onClick={() => setIsEditProfile(false)} onSuccess={setIsEditProfile} />}
 
             <div id="followingZone" style={styleFolowingZone}>
                 <p id="followingTitle" style={styleFollowingTitle}>Following</p>

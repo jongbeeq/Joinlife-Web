@@ -7,10 +7,14 @@ import themeColor from '../../variables/color';
 export default function CreateAccountContainer() {
     const [isOpen, setIsOpen] = useState(false);
     const color = themeColor()
-    return (
-        <div >
-            <BoxButton onClick={() => setIsOpen(true)} fontSize="19" height="50" backgroundColor={color.Black} color={color.White} fullWidth={false}>Create&nbsp;New&nbsp;Account</BoxButton>
 
+    const style = {
+        // width: "500px"
+    }
+
+    return (
+        <div style={style}>
+            <BoxButton onClick={() => setIsOpen(true)} fullWidth={true} fontSize="19" height="50" backgroundColor={color.Black} color={color.White}>Create&nbsp;New&nbsp;Account</BoxButton>
             {isOpen && (<CreateAccountForm onClick={() => setIsOpen(false)} />)}
         </div>
     );

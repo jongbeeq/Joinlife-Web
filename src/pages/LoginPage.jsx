@@ -17,7 +17,7 @@ export default function LoginPage() {
                 <JoinlifeLogo />
             </div>
             <div style={style.LoginContent}>
-                <Container width="395" height="395" hasBorder={true} hasShadow={false} >Content</Container>
+                {/* <Container width="395" height="395" hasBorder={true} hasShadow={false} >Content</Container> */}
                 <Container width="395" height="395" backgroundColor={color.White}>
                     <div className="flex flex-col items-center">
                         <LoginForm />

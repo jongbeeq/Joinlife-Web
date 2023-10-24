@@ -64,7 +64,7 @@ export default function StatusLoginModal({ onClick, confirmLogin, isSubmit, setI
                         </ div>
                     </Container>
                 ) : (
-                    <SetProfile onClick={handleClickLogin} />
+                    <SetProfile onClick={handleClickLogin} skip={true} />
                 )
             ) : (
                 <Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={handleBacktoCreate}>

@@ -7,7 +7,7 @@ import axios from "../../configs/axios";
 import Loading from "../../components/Loading";
 import { useAuth } from "../../hooks/use-auth";
 
-export default function SetProfile({ onClick, onSuccess }) {
+export default function SetProfile({ onClick, onSuccess, skip }) {
     const color = themeColor()
 
     const styleSetProfile = {
@@ -199,7 +199,7 @@ export default function SetProfile({ onClick, onSuccess }) {
             const newProfile = res.data
             setAuthUser(res.data)
             console.log(newProfile)
-            onSuccess(false)
+            onSuccess && onSuccess(false)
         } catch (err) {
             alert(err)
             console.log(err)
@@ -248,7 +248,7 @@ export default function SetProfile({ onClick, onSuccess }) {
                     </div>
                     <div id="buttonZone" style={styleButtonZone}>
                         <TextButton color={color.Orange}>Set Profile</TextButton>
-                        <TextButton color={color.Gray} onClick={(e) => { e.preventDefault; onSuccess() }}>Skip and Login</TextButton>
+                        {skip && <TextButton color={color.Gray} onClick={(e) => { e.preventDefault; onSuccess() }}>Skip and Login</TextButton>}
                     </div>
                 </form>
             </Container >

@@ -2,7 +2,7 @@ import PostContent from "./PostContent"
 import PostFooter from "./PostFooter"
 import PostHeader from "./PostHeader"
 
-export default function PostItem({ postObj }) {
+export default function PostItem({ postObj, deletePost }) {
     const stylePostItem = {
         width: "100%",
         display: "flex",
@@ -13,7 +13,7 @@ export default function PostItem({ postObj }) {
 
     return (
         <div id="postItem" style={stylePostItem}>
-            <PostHeader postObj={postObj} ></PostHeader>
+            <PostHeader postObj={postObj} deletePost={deletePost}></PostHeader>
             {
                 postObj.postFiles.length &&
                 < PostContent postObj={postObj}></PostContent>

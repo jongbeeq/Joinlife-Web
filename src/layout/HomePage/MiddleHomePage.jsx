@@ -51,6 +51,16 @@ export default function MiddleHomePage() {
         setRefresh(!refresh)
     };
 
+    const deletePost = async (postId) => {
+        try {
+            await axios.delete(`/post/${postId}`)
+            setAllpost(allPost.filter(el => el.id !== postId))
+        } catch (err) {
+            alert(err.response.data.message)
+        }
+
+    }
+
     console.log(allPost)
 
     useEffect(
@@ -79,7 +89,7 @@ export default function MiddleHomePage() {
                     <div>+ Create Event</div>
                 </div>
                 <div id="mainContentMiddleHomePage" style={styleMainContentMiddleHomePage}>
-                    {allPost.map((postObj, index) => <PostItem key={index} postObj={postObj}></PostItem>)}
+                    {allPost.map((postObj, index) => <PostItem key={index} postObj={postObj} deletePost={deletePost}></PostItem>)}
                 </div>
             </div>
         </div>

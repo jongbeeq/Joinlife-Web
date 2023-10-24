@@ -1,10 +1,11 @@
-import { TextButton } from "../../components/Button"
+import { useState } from "react"
+import { BoxButton, TextButton } from "../../components/Button"
 import HeaderUser from "../../components/HeaderUser"
 import { DropdownIcon } from "../../icon/icon"
 import formatTimeAgo from "../../utils/time-ago"
 import themeColor from "../../variables/color"
 
-export default function PostHeader({ postObj }) {
+export default function PostHeader({ postObj, deletePost }) {
     const color = themeColor()
     const stylePostHeader = {
         width: "100%",
@@ -12,7 +13,6 @@ export default function PostHeader({ postObj }) {
         display: "flex",
         flexDirection: "column",
         gap: "5%"
-        // background: "red",
     }
 
     const styleTopHeaderPost = {
@@ -65,6 +65,32 @@ export default function PostHeader({ postObj }) {
 
     }
 
+    const styleButtonDropdownPost = {
+        position: "relative"
+    }
+
+    const styleDropdownPost = {
+        position: "absolute",
+        right: "50%",
+        top: "40%",
+        width: "max-content",
+        background: color.Background,
+        display: "flex",
+        height: "max-content",
+        padding: "50% 80%",
+        flexDirection: "column",
+        justifyContent: "space - between",
+        alignItems: "flex - start",
+        borderRadius: "14px",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
+    }
+
+    const [openDropdown, setOpenDropdown] = useState(false)
+
+    const handleClickDelete = () => {
+        deletePost(postObj.id)
+    }
+
     return (
         <div id="postHeader" style={stylePostHeader}>
             <div id="topHeaderPost" style={styleTopHeaderPost}>
@@ -75,7 +101,17 @@ export default function PostHeader({ postObj }) {
                         </div>
                     </HeaderUser>
                 </div>
-                <DropdownIcon></DropdownIcon>
+                <div id="buttonDropdownPost" style={styleButtonDropdownPost}>
+                    <BoxButton onClick={() => setOpenDropdown(!openDropdown)}>
+                        <DropdownIcon></DropdownIcon>
+                    </BoxButton>
+                    {
+                        openDropdown &&
+                        <div id="dropdownPost" style={styleDropdownPost}>
+                            <TextButton onClick={handleClickDelete} fontSize="14">Delete Post</TextButton>
+                        </div>
+                    }
+                </div>
             </div>
             <div id="contentPost" style={styleContentPost}>
                 <div id="contentInfoBar" style={styleContentInfoBar}>

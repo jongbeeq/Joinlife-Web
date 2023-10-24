@@ -3,10 +3,15 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import themeColor from "../variables/color"
 import { BoxButton, TextButton } from "../components/Button"
+import Avatar from "../components/Avatar"
+import SetProfile from "../features/user/SetProfile"
+import { useAuth } from "../hooks/use-auth"
 
 export default function ProfilePage() {
     const { profileId } = useParams()
     const [profileUser, setProfileUser] = useState({})
+    const [isSetProfile, setIsSetProfile] = useState(false)
+    const { authUser } = useAuth()
 
     const color = themeColor()
 
@@ -72,17 +77,10 @@ export default function ProfilePage() {
 
     const styleImageProfileBox = {
         display: "flex",
-        width: "32%",
-        height: "100%",
+        width: "30%",
         borderRadius: "100%",
         background: color.Orange,
-        objectFit: "cover",
         overflow: "hidden"
-    }
-
-    const styleImageProfile = {
-        width: "100%",
-        height: "100%"
     }
 
     const styleTextProfile = {
@@ -158,9 +156,7 @@ export default function ProfilePage() {
         gap: "10%",
         width: "60%",
         height: "100%",
-        // flexWrap: "wrap",
         overflow: "hidden"
-        // background: "red"    
     }
 
     const styleInterest = {
@@ -168,7 +164,6 @@ export default function ProfilePage() {
         gap: "10%",
         width: "50%",
         overflow: "hidden"
-        // background: "red"
     }
 
     const styleFollowDetail = {
@@ -193,18 +188,20 @@ export default function ProfilePage() {
 
     const styleContentProfilePage = {
         display: "flex",
+        height: "70%",
         flexDirection: "column",
         alignItems: "center",
-        gap: "10px"
+        gap: "10px",
+        overflow: "auto"
     }
 
     return (
         <div id="profilePage" style={styleProfilePage}>
             <div id="headerProfilePage" style={styleHeaderProfilePage}>
-                {/* <Avatar user={profileUser} /> */}
+
                 <div id="contentHeader" style={styleContentHeader}>
                     <div id="imageProfileBox" style={styleImageProfileBox}>
-                        <img id="imageProfile" style={styleImageProfile} src={profileImage}></img>
+                        <Avatar user={profileImage} />
                     </div>
                     <div id="textProfile" style={styleTextProfile}>
                         <div id="headTextProfile" style={styleHeadTextProfile}>
@@ -213,7 +210,8 @@ export default function ProfilePage() {
                                 <p id="fullName" style={styleFullName}>{firstName} {lastName}</p>
                             </div>
                             <div id="rightHeadTextProfile" style={styleRightHeadTextProfile}>
-                                <BoxButton backgroundColor={color.Black} color={color.White} fontSize="10" height={40}>Edit Profile</BoxButton>
+                                <BoxButton onClick={() => setIsSetProfile(true)} backgroundColor={color.Black} color={color.White} fontSize="10" height={40}>Edit Profile</BoxButton>
+                                {isSetProfile && <SetProfile onSuccess={() => setIsSetProfile(false)} onClick={() => setIsSetProfile(false)}></SetProfile>}
                             </div>
                         </div>
                         <div id="middleTextProfile" style={styleMiddleTextProfile}>
@@ -245,7 +243,6 @@ export default function ProfilePage() {
                 <TextButton color={color.Gray} fontSize="13">{joinEvents?.length || ""} Join</TextButton>
             </div>
             <div id="contentProfilePage" style={styleContentProfilePage}>
-                <div className="w-80 h-80 bg-black"></div>
                 <div className="w-80 h-80 bg-black"></div>
                 <div className="w-80 h-80 bg-black"></div>
                 <div className="w-80 h-80 bg-black"></div>
