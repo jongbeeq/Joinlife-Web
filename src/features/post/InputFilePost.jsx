@@ -6,7 +6,6 @@ import themeColor from "../../variables/color"
 export default function InputFilePost({ input, setInput }) {
 
     const color = themeColor()
-    // console.log(input)
     const [files, setFiles] = useState([])
     const fileEl = useRef(null)
 
@@ -106,7 +105,6 @@ export default function InputFilePost({ input, setInput }) {
 
     useEffect(
         () => {
-            // alert("useEffect Active")
             setPreviousFile(files.length)
         }
         , [files]
@@ -132,7 +130,6 @@ export default function InputFilePost({ input, setInput }) {
                     <BoxButton fontSize="13" height="30" backgroundColor={color.White} color={color.SubGray} onClick={(e) => {
                         e.preventDefault()
                         fileEl.current.click()
-                        // setOpenInputFile(false)
                     }}>
                         <ImageIcon />
                         Add Image or Video

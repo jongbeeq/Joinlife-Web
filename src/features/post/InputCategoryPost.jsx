@@ -17,7 +17,7 @@ export default function InputCategoryPost({ input, setInput }) {
         overflow: "auto"
     }
 
-    console.log(input)
+    // console.log(input)
     const styleInputCategory = {
         width: "40%",
         height: "15%",
@@ -31,7 +31,7 @@ export default function InputCategoryPost({ input, setInput }) {
         return obj
     })
 
-    console.log("🚀 ~ file: InputCategoryPost.jsx:29 ~ InputCategoryPost ~ previousCategory:", { ...previousCategoryArray })
+    // console.log("🚀 ~ file: InputCategoryPost.jsx:29 ~ InputCategoryPost ~ previousCategory:", { ...previousCategoryArray })
 
 
     const [allCategory, setAllCategory] = useState([])
