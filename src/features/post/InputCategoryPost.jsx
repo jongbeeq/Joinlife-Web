@@ -31,8 +31,6 @@ export default function InputCategoryPost({ input, setInput }) {
         return obj
     })
 
-    // console.log("🚀 ~ file: InputCategoryPost.jsx:29 ~ InputCategoryPost ~ previousCategory:", { ...previousCategoryArray })
-
 
     const [allCategory, setAllCategory] = useState([])
     const [category, setCategory] = useState("aaaa")
@@ -46,7 +44,6 @@ export default function InputCategoryPost({ input, setInput }) {
                     res => {
                         setAllCategory(res.data.category)
                         console.log(allCategory)
-
                     }
                 )
                 .catch(
@@ -76,26 +73,20 @@ export default function InputCategoryPost({ input, setInput }) {
 
     function CategoryButton({ categoryName }) {
         const [haveCategory, setHaveCat] = useState(false)
-        console.log(category)
         useEffect(() => {
             const findCategory = Object.values(category)
                 .find(el => {
                     console.log(el)
                     el === categoryName
                 })
-            console.log("🚀 ~ file: InputCategoryPost.jsx:75 ~ useEffect ~ findCategory:", findCategory)
             setHaveCat(findCategory)
-            console.log(haveCategory)
-            console.log(categoryName)
-            console.log(category === categoryName)
-            console.log(category)
         },
             [category]
         )
 
         console.log("aft useEffect", categoryName)
         console.log("aft useEffect", category)
-        console.log("aft useEffect", category === categoryName)
+        console.log("aft useEffect category === categoryName", category === categoryName)
         console.log("aft useEffect", haveCategory)
 
         const styleCreateButton = {

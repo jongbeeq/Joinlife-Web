@@ -27,7 +27,6 @@ export default function MiddleHomePage() {
 
     const styleHeadContentMiddleHomePage = {
         width: "100%",
-        // position: "fixed",
         top: "0%",
         height: "10vh",
         display: "flex",
@@ -82,7 +81,6 @@ export default function MiddleHomePage() {
 
     useEffect(
         () => {
-            // alert("loading")
             setLoading(true)
             axios.get("./post/")
                 .then(

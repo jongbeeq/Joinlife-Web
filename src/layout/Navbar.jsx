@@ -6,23 +6,8 @@ import themeColor from "../variables/color"
 export default function Navbar() {
     const color = themeColor()
 
-    const navBar = {
-        positon: "fixed",
-        bottom: "0",
-        right: "0",
-        display: "flex",
-        height: "100vh",
-        width: "20%",
-        padding: "2% 0% 0% 2%",
-        flexDirection: "column",
-        gap: "5%",
-        alignItems: "flex - start",
-        borderRight: `1px solid ${color.OpacityGray}`,
-        background: `${color.Background}`,
-    }
-
     return (
-        <div style={navBar}>
+        <div className={` h-full w-[15%] flex flex-col gap-[3%] pl-[2%] pt-[2%] border-r-[1px] border-r-[${color.OpacityGray}]`}>
             <Link to='/'>
                 <JoinlifeLogo fontSize="35px" />
             </Link>
