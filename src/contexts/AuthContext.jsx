@@ -9,6 +9,7 @@ export default function AuthContextProvider({ children }) {
     const [initialLoading, setInitialLoading] = useState(true);
     const [confirmLogin, setConfirmLogin] = useState(null)
 
+
     useEffect(() => {
         if (getAccessToken()) {
             axios
@@ -46,7 +47,9 @@ export default function AuthContextProvider({ children }) {
         setAuthUser(null)
     }
 
-    return (<AuthContext.Provider value={{ login, logout, register, toHomePage, confirmLogin, authUser, initialLoading, setAuthUser }}>
+
+
+    return (<AuthContext.Provider value={{ login, logout, register, toHomePage, confirmLogin, authUser, initialLoading, setInitialLoading, setAuthUser }}>
         {children}
     </AuthContext.Provider>)
 }

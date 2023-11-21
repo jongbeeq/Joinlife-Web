@@ -1,13 +1,13 @@
 import themeColor from "../../variables/color"
 
 export default function PostContent({ postObj }) {
-
+    // console.log(postObj.postFiles)
     const color = themeColor()
 
     const stylePostContent = {
         width: "100%",
-        height: "60%",
-        background: "blue",
+        // height: "60%",
+        // background: "blue",
     }
 
     const styleShowFileContainer = {

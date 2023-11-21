@@ -17,6 +17,7 @@ export default function InputCategoryPost({ input, setInput }) {
         overflow: "auto"
     }
 
+    console.log(input)
     const styleInputCategory = {
         width: "40%",
         height: "15%",
@@ -24,8 +25,19 @@ export default function InputCategoryPost({ input, setInput }) {
         borderBottom: `1px solid ${color.SubGray}`,
     }
 
+    const previousCategoryArray = input?.postCategorys?.map(el => {
+        const obj = {}
+        obj[el.categoryName] = el.categoryName
+        return obj
+    })
+
+    console.log("🚀 ~ file: InputCategoryPost.jsx:29 ~ InputCategoryPost ~ previousCategory:", { ...previousCategoryArray })
+
+
     const [allCategory, setAllCategory] = useState([])
-    const [category, setCategory] = useState(0)
+    const [category, setCategory] = useState("aaaa")
+    console.log("🚀 ~ file: InputCategoryPost.jsx:39 ~ InputCategoryPost ~ category:", category)
+
 
     useEffect(
         () => {
@@ -33,13 +45,20 @@ export default function InputCategoryPost({ input, setInput }) {
                 .then(
                     res => {
                         setAllCategory(res.data.category)
+                        console.log(allCategory)
+
                     }
                 )
                 .catch(
                     err => alert(err.response.data.message)
                 )
+            setCategory({ ...previousCategoryArray })
+            console.log(category)
         }
         , [])
+
+    console.log(category)
+    console.log(allCategory)
 
     const handleChangeCategory = async (e) => {
         try {
@@ -57,13 +76,27 @@ export default function InputCategoryPost({ input, setInput }) {
 
     function CategoryButton({ categoryName }) {
         const [haveCategory, setHaveCat] = useState(false)
+        console.log(category)
         useEffect(() => {
             const findCategory = Object.values(category)
-                .find(el => el === categoryName)
+                .find(el => {
+                    console.log(el)
+                    el === categoryName
+                })
+            console.log("🚀 ~ file: InputCategoryPost.jsx:75 ~ useEffect ~ findCategory:", findCategory)
             setHaveCat(findCategory)
+            console.log(haveCategory)
+            console.log(categoryName)
+            console.log(category === categoryName)
+            console.log(category)
         },
             [category]
         )
+
+        console.log("aft useEffect", categoryName)
+        console.log("aft useEffect", category)
+        console.log("aft useEffect", category === categoryName)
+        console.log("aft useEffect", haveCategory)
 
         const styleCreateButton = {
             display: "flex",

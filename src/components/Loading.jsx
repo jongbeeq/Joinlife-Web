@@ -24,7 +24,7 @@ export default function Loading() {
 
     return (
         <>
-            <div id="loadingBackground" style={styleLoadingBackground} className="absolute inset-0 bg-black opacity-30 z-150"> </div>
+            {/* <div id="loadingBackground" style={styleLoadingBackground} className="absolute inset-0 bg-black opacity-30 z-150"> </div> */}
             <p id="textLoading" style={styleTextLoading} className="animate-spin">Loading</p>
         </>
     )

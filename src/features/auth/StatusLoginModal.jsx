@@ -52,7 +52,7 @@ export default function StatusLoginModal({ onClick, confirmLogin, isSubmit, setI
         (isSubmit === "Sign Up Success") ?
             (
                 !toSetProfile ? (
-                    <Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
+                    <Container translate="translate(-35%, -50%)" backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
                         <div style={styleStatusSignup} >
                             <p style={styleStatusText}>{isSubmit}</p>
                             <SuccessIcon />

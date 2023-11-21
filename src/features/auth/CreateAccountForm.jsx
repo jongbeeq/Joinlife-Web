@@ -58,7 +58,7 @@ export default function CreateAccountForm({ onClick }) {
 
     return (
         !isSubmit ? (
-            <Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
+            <Container translate="translate(-35%, -50%)" backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
                 <form style={styleForm} onSubmit={handleSubmitForm}>
                     <InputBox fontSize={16} placeholder={"Firstname"} width={300} onChange={handleChangeInput} name="firstName" error={error.firstName}></InputBox>
                     <InputBox fontSize={16} placeholder={"LastName"} width={300} onChange={handleChangeInput} name="lastName" error={error.lastName}></InputBox>

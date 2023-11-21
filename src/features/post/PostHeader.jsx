@@ -5,16 +5,20 @@ import { DropdownIcon } from "../../icon/icon"
 import formatTimeAgo from "../../utils/time-ago"
 import themeColor from "../../variables/color"
 import { useAuth } from "../../hooks/use-auth"
+import UpdatepostModal from "./UpdatepostModal"
 
-export default function PostHeader({ postObj, deletePost }) {
+export default function PostHeader({ postObj, deletePost, editPost, setStopOverflow }) {
     const color = themeColor()
+
+    const [isEditPost, setIsEditPost] = useState(false)
 
     const stylePostHeader = {
         width: "100%",
-        height: "20%",
+        // height: "20%",
         display: "flex",
         flexDirection: "column",
-        gap: "5%"
+        gap: "5%",
+        // positon: "relative"
     }
 
     const styleTopHeaderPost = {
@@ -102,6 +106,19 @@ export default function PostHeader({ postObj, deletePost }) {
         deletePost(postObj.id)
     }
 
+    // const [isEditPost, setIsEditPost] = useState(false)
+
+    const handleClickEdit = () => {
+        setIsEditPost(true)
+        setStopOverflow(true)
+    }
+
+    const handleCloseEdit = () => {
+        setIsEditPost(false)
+        setStopOverflow(false)
+    }
+
+
     return (
         <div id="postHeader" style={stylePostHeader}>
             <div id="topHeaderPost" style={styleTopHeaderPost}>
@@ -121,7 +138,11 @@ export default function PostHeader({ postObj, deletePost }) {
                         <div id="dropdownPost" style={styleDropdownPost}>
                             {isUser
                                 ?
-                                <TextButton onClick={handleClickDelete} fontSize="14">Delete Post</TextButton>
+                                <div>
+                                    <TextButton onClick={handleClickEdit} fontSize="14">Edit Post</TextButton>
+                                    <TextButton onClick={handleClickDelete} fontSize="14">Delete Post</TextButton>
+                                    {isEditPost && <UpdatepostModal clickClose={handleCloseEdit} editPost={editPost} postId={postObj.id}></UpdatepostModal>}
+                                </div>
                                 :
                                 <TextButton fontSize="14">Report</TextButton>
                             }

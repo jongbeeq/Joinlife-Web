@@ -11,13 +11,13 @@ export default function ProfilePage() {
     const { userId } = useParams()
     const [profileUser, setProfileUser] = useState({})
     const [isSetProfile, setIsSetProfile] = useState(false)
+    const [refresh, setRefresh] = useState(false)
     const { authUser } = useAuth()
 
     const color = themeColor()
 
     useEffect(
         () => {
-            alert(`Effect userId:   ${userId}`)
             axios.get(`/user/${userId}`).then(res => {
                 console.log("🚀 ~ file: ProfilePage.jsx:15 ~ axios.get ~ res.data:", res.data)
                 setProfileUser(res.data)
@@ -30,7 +30,7 @@ export default function ProfilePage() {
                 }
             )
         }
-        , [userId]
+        , [userId, refresh]
     )
 
     console.log("🚀 ~ file: ProfilePage.jsx:30 ~ ProfilePage ~ profileUser:", profileUser)
@@ -46,19 +46,15 @@ export default function ProfilePage() {
         postCreator = profileUser
     }
 
+    console.log(postCreator)
+    console.log(postCreator.profileImage)
+
     const {
-        username,
-        firstName,
-        lastName,
-        userCategorys,
-        userInterests,
-        description,
-        profileImage,
         posts,
         joinEvents,
         event,
-        following,
-        followed,
+        userCategorys,
+        userInterests
     }
         = profileUser
 
@@ -213,26 +209,30 @@ export default function ProfilePage() {
         gap: "10px",
         overflow: "auto"
     }
+    console.log("🚀 ~ file: ProfilePage.jsx:210 ~ ProfilePage ~ postCreator.userCategorys:", postCreator.userCategorys)
+    console.log("🚀 ~ file: ProfilePage.jsx:210 ~ ProfilePage ~ postCreator.userCategorys:", postCreator)
 
     return (
         <div id="profilePage" style={styleProfilePage}>
             <div id="headerProfilePage" style={styleHeaderProfilePage}>
-
                 <div id="contentHeader" style={styleContentHeader}>
                     <div id="imageProfileBox" style={styleImageProfileBox}>
-                        <Avatar user={profileImage} />
+                        <Avatar src={postCreator.profileImage} />
                     </div>
                     <div id="textProfile" style={styleTextProfile}>
                         <div id="headTextProfile" style={styleHeadTextProfile}>
                             <div id="leftHeadTextProfile" style={styleLeftHeadTextProfile}>
-                                <h1 id="username" style={styleUsername}>{username}</h1>
-                                <p id="fullName" style={styleFullName}>{firstName} {lastName}</p>
+                                <h1 id="username" style={styleUsername}>{postCreator.username}</h1>
+                                <p id="fullName" style={styleFullName}>{postCreator.firstName} {postCreator.lastName}</p>
                             </div>
                             <div id="rightHeadTextProfile" style={styleRightHeadTextProfile}>
-                                {
+                                {isUser
+                                    ?
                                     <BoxButton onClick={() => setIsSetProfile(true)} backgroundColor={color.Black} color={color.White} fontSize="10" height={40}>Edit Profile</BoxButton>
+                                    :
+                                    <BoxButton backgroundColor={color.Orange} color={color.White} fontSize="10" height={40}>Follow</BoxButton>
                                 }
-                                {isSetProfile && <SetProfile onSuccess={() => setIsSetProfile(false)} onClick={() => setIsSetProfile(false)}></SetProfile>}
+                                {isSetProfile && <SetProfile onSuccess={() => { setIsSetProfile(false); setRefresh(!refresh) }} onClick={() => setIsSetProfile(false)}></SetProfile>}
                             </div>
                         </div>
                         <div id="middleTextProfile" style={styleMiddleTextProfile}>
@@ -240,7 +240,8 @@ export default function ProfilePage() {
                                 <div id="category" style={styleCategory}>
                                     <p>Category: </p>
                                     {userCategorys?.map(el => <TextButton key={el} fontSize="12">{el}</TextButton>)}
-                                    <BoxButton>...</BoxButton>
+                                    {/* <TextButton fontSize="12">{postCreator.userCategorys[0]}</TextButton>
+                                        <BoxButton>...</BoxButton> */}
                                 </div>
                                 <div id="interest" style={styleInterest}>
                                     <p>Interest: </p>
@@ -249,11 +250,11 @@ export default function ProfilePage() {
                                 </div>
                             </div>
                             <div id="followDetail" style={styleFollowDetail}>
-                                <TextButton fontSize="12">{following?.length} Following</TextButton>
-                                <TextButton fontSize="12">{followed?.length} Follower</TextButton>
+                                <TextButton fontSize="12">{postCreator.following?.length} Following</TextButton>
+                                <TextButton fontSize="12">{postCreator.followed?.length} Follower</TextButton>
                             </div>
                         </div>
-                        <div id="description" style={styleDescription}>{description}</div>
+                        <div id="description" style={styleDescription}>{postCreator.description}</div>
                     </div>
                 </div>
             </div>

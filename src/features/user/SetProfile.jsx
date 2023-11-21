@@ -214,7 +214,7 @@ export default function SetProfile({ onClick, onSuccess, skip }) {
     return (
         <>
             {isLoading && <Loading />}
-            <Container backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
+            <Container translate="translate(-40%, -50%)" backgroundColor={color.White} width="800" height="675" popUp={true} clickClose={onClick}>
                 <form style={styleSetProfile} onSubmit={handleSubmitForm}>
                     <div style={styleRow}>
                         <div style={styleInput}>

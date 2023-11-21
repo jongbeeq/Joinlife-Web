@@ -10,7 +10,7 @@ export default function HomePage() {
         display: "flex",
         alignItems: "flex-start",
         gap: "1px",
-        position: "relative",
+        // position: "relative",
         // overflow: "auto",
     }
 

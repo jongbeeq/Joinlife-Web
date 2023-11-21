@@ -153,6 +153,7 @@ export function InputFile({ width, height, circle, fontSize, multiFile, file, se
                 </div>
             )}
             <input
+                id='file'
                 type="file"
                 className="hidden"
                 multiple={multiFile && "multiple"}

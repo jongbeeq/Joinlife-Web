@@ -6,7 +6,7 @@ import themeColor from "../../variables/color"
 export default function InputFilePost({ input, setInput }) {
 
     const color = themeColor()
-
+    // console.log(input)
     const [files, setFiles] = useState([])
     const fileEl = useRef(null)
 

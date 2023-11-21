@@ -6,7 +6,7 @@ export default function PostFooter({ postObj }) {
         display: "flex",
         flexDirection: "column",
         width: "100%",
-        height: "20%",
+        // height: "20%",
         // gap: "15%",
         // background: "green",
     }
@@ -33,7 +33,7 @@ export default function PostFooter({ postObj }) {
     const styleCommentBox = {
         paddingTop: "3%",
         width: "100%",
-        height: "60%",
+        // height: "60%",
         display: "flex",
         flexDirection: "column"
     }

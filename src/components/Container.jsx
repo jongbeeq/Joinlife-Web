@@ -1,7 +1,7 @@
 import themeColor from "../variables/color"
 import { TextButton } from "./Button"
 
-export default function Container({ children, width, height, backgroundColor, hasShadow = true, hasBorder, popUp = false, isWrap = false, clickClose }) {
+export default function Container({ left, translate, children, width, height, backgroundColor, hasShadow = true, hasBorder, popUp = false, isWrap = false, clickClose }) {
     const color = themeColor()
 
     const style = {
@@ -21,15 +21,15 @@ export default function Container({ children, width, height, backgroundColor, ha
         position: popUp && "absolute",
         top: "50%",
         left: "40%",
-        transform: popUp && "translate(-50%, -50%)",
+        transform: popUp && (translate ? `${translate}` : `translate(-50%, -50%)`),
         zIndex: popUp && "100"
     }
 
     const styleIndexBackground = {
         position: "absolute",
-        transform: "translate(-50%, -50%)",
+        transform: (translate ? `${translate}` : `translate(-50%, -50%)`),
         top: "50%",
-        left: "40%",
+        left: `${left}%` || "40%",
         zIndex: "100",
         background: color.Background,
         opacity: 0.7,
