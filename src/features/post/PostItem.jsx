@@ -26,7 +26,7 @@ export default function PostItem({ postObj, deletePost, editPost, isEditPost, se
         //     }
         //     <PostFooter postObj={postObj}></PostFooter>
         // </div >
-        <div className="flex flex-col w-full h-[78%] ">
+        <div className="flex flex-col w-full h-[78%] bg-white rounded-[2%] shadow-md p-[3%]">
             <div className="flex w-full h-[8%] justify-between items-center">
                 <div className="flex gap-[3%] h-full w-[48%] min-h-[44px] min-w-[44px] items-center">
                     <div className="cursor-pointer flex overflow-hidden justify-center min-h-[44px] min-w-[44px] items-center w-[23%] h-full rounded-full">
@@ -61,7 +61,7 @@ export default function PostItem({ postObj, deletePost, editPost, isEditPost, se
             <div className="flex w-full h-[66%] bg-white relative overflow-hidden">
                 <img className="object-cover w-full" src='https://res.cloudinary.com/dsldd3uhx/image/upload/v1698371154/qutjpavsgiurvfvhf3rs.jpg'></img>
             </div>
-            <div className="flex flex-col w-full h-[14%]">
+            <div className="flex flex-col w-full h-[14%] gap-[3%]">
                 <div className="w-full h-[20%] flex justify-between">
                     <div className="flex gap-[3%] w-full h-full">
                         <LikeIcon />
@@ -72,8 +72,8 @@ export default function PostItem({ postObj, deletePost, editPost, isEditPost, se
                     </div>
                     <GotoEventIcon />
                 </div>
-                <div className="w-full h-[20%] text-[90%] font-medium">Like 10</div>
-                <div className="flex flex-row w-full h-[38%] px-[2%] py-[1%] justify-between">
+                <div className="w-full h-[20%] text-[80%] font-medium">Like 10</div>
+                <div className="flex flex-row w-full h-[38%] px-[2%] py-[1%] justify-between bg-gray-100 rounded-full">
                     <div className="flex flex-row w-[80%] h-full gap-[1%]">
                         <div className="rounded-full h-full w-[7%] flex items-center justify-center overflow-hidden">
                             <img className="object-cover" src="https://res.cloudinary.com/dsldd3uhx/image/upload/v1698372506/dritgpyrhqd9dekunnpt.png"></img>
@@ -89,7 +89,7 @@ export default function PostItem({ postObj, deletePost, editPost, isEditPost, se
                             </div>
                         </div>
                     </div>
-                    <div className="text-[60%]">
+                    <div className="text-[60%] flex items-center pt-[1%]">
                         <LikeIcon />
                     </div>
                 </div>
