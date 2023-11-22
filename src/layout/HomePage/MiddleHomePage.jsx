@@ -5,6 +5,7 @@ import { TextButton } from "../../components/Button"
 import axios from "../../configs/axios"
 import Loading from "../../components/Loading"
 import { AddIcon, CommentIcon, DropdownIcon, GotoEventIcon, LikeIcon, ShareIcon, TagUserIcon } from "../../icon/icon"
+import CreatePostAndEventButton from "./CreatePostAndEventButton"
 
 export default function MiddleHomePage() {
     // const [stopOverflow, setStopOverflow] = useState(false)
@@ -101,17 +102,8 @@ export default function MiddleHomePage() {
     return (
         <div className="w-[78%] h-full flex flex-col items-center justify-center overflow-hidden">
             <div className="flex flex-col w-[60%] h-full gap-[3%] pt-[3%]">
-                <div className="flex gap-[10%] w-full h-[5%] items-center border-b border-[0.5%] border-gray-300">
-                    <div className="flex flex-row justify-center items-center hover:text-gray-400 cursor-pointer gap-[5%]">
-                        <AddIcon />
-                        Create&nbsp;Post
-                    </div>
-                    <div className="flex flex-row justify-center items-center hover:text-gray-400 cursor-pointer gap-[5%]">
-                        <AddIcon />
-                        Create&nbsp;Event
-                    </div>
-                </div>
-                <div className="flex flex-col w-full h-[88%] ">
+                <CreatePostAndEventButton />
+                {/* <div className="flex flex-col w-full h-[88%] ">
                     <div className="flex w-full h-[8%] justify-between items-center">
                         <div className="flex gap-[3%] h-full w-[48%] min-h-[44px] min-w-[44px] items-center">
                             <div className="cursor-pointer flex overflow-hidden justify-center min-h-[44px] min-w-[44px] items-center w-[23%] h-full rounded-full">
@@ -180,7 +172,7 @@ export default function MiddleHomePage() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <PostItem />
                 {/* {loading && <Loading></Loading>}
             <div id="contentMiddleHomePage" style={styleContentMiddleHomePage}>

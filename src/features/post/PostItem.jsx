@@ -26,7 +26,7 @@ export default function PostItem({ postObj, deletePost, editPost, isEditPost, se
         //     }
         //     <PostFooter postObj={postObj}></PostFooter>
         // </div >
-        <div className="flex flex-col w-full h-[88%] ">
+        <div className="flex flex-col w-full h-[78%] ">
             <div className="flex w-full h-[8%] justify-between items-center">
                 <div className="flex gap-[3%] h-full w-[48%] min-h-[44px] min-w-[44px] items-center">
                     <div className="cursor-pointer flex overflow-hidden justify-center min-h-[44px] min-w-[44px] items-center w-[23%] h-full rounded-full">
