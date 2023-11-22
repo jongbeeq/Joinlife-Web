@@ -34,7 +34,7 @@ export default function PostItem({ postObj, deletePost, editPost, isEditPost, se
                             <img className="object-cover" src="https://res.cloudinary.com/dsldd3uhx/image/upload/v1698560087/tujgjtq5jdwruguaz6oe.jpg"></img>
                         </div>
                         <div className="flex flex-col justify-center">
-                            <div className=" text-[100%] font-semibold cursor-pointer hover:text-gray-400">Username</div>
+                            <div className=" text-[100%] font-semibold cursor-pointer hover:underline">Username</div>
                             <div className=" text-[30%] font-medium text-gray-400">22/11/2023</div>
                         </div>
                         <div className=" font-medium text-[70%] text-gray-400 cursor-pointer hover:text-gray-500">Following</div>
@@ -76,7 +76,7 @@ export default function PostItem({ postObj, deletePost, editPost, isEditPost, se
                 </div>
                 <div className="w-full h-[20%] text-[80%] font-medium">Like 10</div>
                 <div className="flex flex-row w-full h-[45%] px-[2%] py-[1%] justify-between bg-gray-100 rounded-full">
-                    <div className="flex flex-row w-[80%] h-full gap-[1%]">
+                    <div className="flex flex-row w-[90%] h-full gap-[1%]">
                         <div className="rounded-full h-full w-[7%] flex items-center justify-center overflow-hidden">
                             <img className="object-cover" src="https://res.cloudinary.com/dsldd3uhx/image/upload/v1698372506/dritgpyrhqd9dekunnpt.png"></img>
                         </div>
