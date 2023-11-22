@@ -7,7 +7,7 @@ export default function Navbar() {
     const color = themeColor()
 
     return (
-        <div className={` h-full w-[15%] flex flex-col gap-[3%] pl-[2%] pt-[2%] border-r-[1px] border-r-[${color.OpacityGray}]`}>
+        <div className={`fixed left-0 h-full w-[18%] flex flex-col gap-[3%] pl-[2%] pt-[2%] border-r-[1px] border-r-[${color.OpacityGray}]`}>
             <Link to='/'>
                 <JoinlifeLogo fontSize="35px" />
             </Link>

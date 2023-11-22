@@ -8,74 +8,75 @@ import SetProfile from "../../features/user/SetProfile"
 import Avatar from "../../components/Avatar"
 
 export default function RightHomePage() {
-    const { logout } = useAuth()
+    // const { logout } = useAuth()
 
-    const color = themeColor()
+    // const color = themeColor()
 
-    const { authUser } = useAuth()
+    // const { authUser } = useAuth()
 
-    const [isEditProflie, setIsEditProfile] = useState(false)
-    const [openSetting, setOpenSetting] = useState(false)
+    // const [isEditProflie, setIsEditProfile] = useState(false)
+    // const [openSetting, setOpenSetting] = useState(false)
 
-    const styleRightHomePage = {
-        display: "flex",
-        width: "23%",
-        right: "0%",
-        height: "100%",
-        flexDirection: "column",
-        alignItems: "center",
-        borderLeft: `1px solid ${color.OpacityGray}`,
-        padding: "2%",
-        gap: "3%"
-    }
+    // const styleRightHomePage = {
+    //     display: "flex",
+    //     width: "23%",
+    //     right: "0%",
+    //     height: "100%",
+    //     flexDirection: "column",
+    //     alignItems: "center",
+    //     borderLeft: `1px solid ${color.OpacityGray}`,
+    //     padding: "2%",
+    //     gap: "3%"
+    // }
 
-    const styleUserTabbar = {
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-    }
+    // const styleUserTabbar = {
+    //     width: "100%",
+    //     display: "flex",
+    //     alignItems: "center",
+    // }
 
-    const styleDropdownSettingUser = {
-        position: "absolute",
-        left: "88.6%",
-        top: "6.5%",
-        width: "10%",
-        background: color.Background,
-        display: "flex",
-        height: "90px",
-        padding: "19px 13px",
-        flexDirection: "column",
-        justifyContent: "space - between",
-        alignItems: "flex - start",
-        borderRadius: "14px",
-        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-    }
+    // const styleDropdownSettingUser = {
+    //     position: "absolute",
+    //     left: "88.6%",
+    //     top: "6.5%",
+    //     width: "10%",
+    //     background: color.Background,
+    //     display: "flex",
+    //     height: "90px",
+    //     padding: "19px 13px",
+    //     flexDirection: "column",
+    //     justifyContent: "space - between",
+    //     alignItems: "flex - start",
+    //     borderRadius: "14px",
+    //     boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+    // }
 
-    const styleIconUserTabbar = {
-        display: "flex",
-        gap: "10px",
-    }
+    // const styleIconUserTabbar = {
+    //     display: "flex",
+    //     gap: "10px",
+    // }
 
-    const styleFolowingZone = {
-        display: "flex",
-        width: "100%",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        gap: "15px",
-        borderBottom: `1px solid ${color.Gray}`,
-        paddingBottom: "10%"
-    }
+    // const styleFolowingZone = {
+    //     display: "flex",
+    //     width: "100%",
+    //     flexDirection: "column",
+    //     alignItems: "flex-start",
+    //     gap: "15px",
+    //     borderBottom: `1px solid ${color.Gray}`,
+    //     paddingBottom: "10%"
+    // }
 
-    const styleFollowingTitle = {
-        color: color.Gray
-    }
-    const styleFollowingAvatar = {
-        width: "25%"
-    }
+    // const styleFollowingTitle = {
+    //     color: color.Gray
+    // }
+    // const styleFollowingAvatar = {
+    //     width: "25%"
+    // }
 
     return (
-        <div style={styleRightHomePage}>
-            <div id="userTabbar" style={styleUserTabbar}>
+        <div className="w-[18%] h-full bg-blue-400 fixed right-0">
+            sadsa
+            {/* <div id="userTabbar" style={styleUserTabbar}>
                 <HeaderUser user={authUser}>
                     <TextButton color={color.Gray} fontSize="12">{authUser?.firstName} {authUser?.lastName}</TextButton>
                 </HeaderUser>
@@ -98,7 +99,7 @@ export default function RightHomePage() {
                 <div id="followingAvatar" style={styleFollowingAvatar}>
                     <Avatar />
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

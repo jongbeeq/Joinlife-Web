@@ -80,19 +80,19 @@ export function FailIcon() {
 
 export function SettingIcon() {
     return (
-        <i className="fi fi-rr-settings"></i>
+        <i className="fi fi-rr-settings items-center"></i>
     )
 }
 
 export function LocationIcon() {
     return (
-        <i className="fi fi-rr-marker"></i>
+        <i className="fi fi-rr-marker items-center"></i>
     )
 }
 
 export function CreateIcon() {
     return (
-        <i className="fi fi-rr-add"></i>
+        <i className="fi fi-rr-add items-center"></i>
     )
 }
 
@@ -104,33 +104,53 @@ export function ImageIcon() {
 
 export function DropdownIcon() {
     return (
-        <i className="fi fi-rr-menu-dots"></i>
+        <i className="fi fi-rr-menu-dots items-center"></i>
     )
 }
 
 export function CategorynIcon() {
     return (
-        <i className="fi fi-rr-layers"></i>
+        <i className="fi fi-rr-layers items-center"></i>
     )
 }
 
 export function LikeIcon() {
     return (
-        <i className="fi fi-rr-heart"></i>
+        <i className="fi fi-rr-heart items-center"></i>
     )
 }
 
 export function CommentIcon() {
     return (
-        <i className="fi fi-rr-comment-alt-middle"></i>
+        <i className="fi fi-rr-comment-alt-middle items-center text-[90%]"></i>
     )
 }
 
 export function ShareIcon() {
     return (
-        <i className="fi fi-rr-comment-alt-middle"></i>
+        <i className="fi fi-rr-redo items-center"></i>
     )
 }
+
+export function AddIcon() {
+    return (
+        <i className="fi fi-rr-add flex items-center"></i>
+    )
+}
+
+export function TagUserIcon() {
+    return (
+        <i className="fi fi-ss-user flex items-center"></i>
+    )
+}
+
+export function GotoEventIcon() {
+    return (
+        <i className="fi fi-rr-arrow-up-right-from-square flex items-center"></i>
+    )
+}
+
+
 
 
 

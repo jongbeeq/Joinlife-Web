@@ -16,9 +16,9 @@ export default function HomePage() {
 
     return (
         // <div style={homePage}>
-        <div className="">
-            {/* <MiddleHomePage></MiddleHomePage>
-            <RightHomePage></RightHomePage> */}
+        <div className="flex flex-row w-full h-full justify-center relative">
+            <MiddleHomePage></MiddleHomePage>
+            <RightHomePage></RightHomePage>
         </div>
     )
 }
